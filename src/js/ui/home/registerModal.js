@@ -1,4 +1,4 @@
-import { registerListener } from "../listeners";
+import { registerListener } from "../../listeners";
 
 export function registerModal() {
   const modal = document.querySelector("[data-registerModal");

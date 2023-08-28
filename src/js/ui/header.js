@@ -1,11 +1,13 @@
 import { isLoggedIn } from "../api/auth";
-import { registerModal } from "./registerModal";
+import { loginModal } from "./home/loginModal";
+import { registerModal } from "./home/registerModal";
 
 export function header() {
   createHeaderElement();
 
   if (!isLoggedIn()) {
     registerModal();
+    loginModal();
   }
 }
 
@@ -36,7 +38,8 @@ function createHeaderElement() {
   if (!isLoggedIn()) {
     ul.innerHTML += `
           <li>
-            <button data-open-loginDialog class="ml-2 p-1 px-2 bg-green-400 rounded-md inline-block">Login</button>
+            <button data-open-loginModal class="relative ml-2 p-1 px-2 bg-green-400 rounded-md inline-block">Login</button>
+            <dialog data-loginModal class="absolute p-4 border-2"></dialog>
           </li>
           <li>
             <button data-open-registerModal class="ml-2 p-1 px-2 bg-blue-500 rounded-md inline-block">Register</button>
