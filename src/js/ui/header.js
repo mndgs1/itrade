@@ -2,6 +2,14 @@ import { isLoggedIn } from "../api/auth";
 import { registerModal } from "./registerModal";
 
 export function header() {
+  createHeaderElement();
+
+  if (!isLoggedIn()) {
+    registerModal();
+  }
+}
+
+function createHeaderElement() {
   const header = document.createElement("header");
 
   header.classList.add("py-2", "shadow", "relative");
@@ -27,20 +35,13 @@ export function header() {
   const ul = document.querySelector("ul");
   if (!isLoggedIn()) {
     ul.innerHTML += `
-          <li class="">
+          <li>
             <button data-open-loginDialog class="ml-2 p-1 px-2 bg-green-400 rounded-md inline-block">Login</button>
           </li>
           <li>
             <button data-open-registerModal class="ml-2 p-1 px-2 bg-blue-500 rounded-md inline-block">Register</button>
-            <dialog data-registerModal class="p-10">${registerModal()}</dialog>
+            <dialog data-registerModal class="p-10"></dialog>
           </li>`;
-
-    const openButton = document.querySelector("[data-open-registerModal");
-    const modal = document.querySelector("[data-registerModal");
-
-    openButton.addEventListener("click", () => {
-      modal.showModal();
-    });
   } else {
     ul.innerHTML += `                        
                         <li>
