@@ -33,7 +33,6 @@ function createHeaderElement() {
 
   const body = document.querySelector("body");
   body.appendChild(header);
-
   const ul = document.querySelector("ul");
   if (!isLoggedIn()) {
     ul.innerHTML += `
