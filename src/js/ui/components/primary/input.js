@@ -1,12 +1,14 @@
 import classNames from "classnames";
 
-export function input(
-  { long, short, ...rest },
+export function input({
+  long,
+  short,
   id,
   label,
   message,
-  attributes
-) {
+  attributes,
+  ...rest
+}) {
   const wrap = document.createElement("div");
   const wrapClasses = classNames(rest.className, "", {
     "sm:col-span-4": short,
@@ -16,7 +18,10 @@ export function input(
   wrap.className = wrapClasses;
   wrap.appendChild(createLabel(id, label));
   wrap.appendChild(createInput(id, attributes));
-  wrap.appendChild(createInputMessage(message));
+
+  if (message) {
+    wrap.appendChild(createInputMessage(message));
+  }
 
   return wrap;
 }
@@ -53,6 +58,8 @@ function createInput(id, attributes) {
 function createInputMessage(message) {
   const messageEl = document.createElement("p");
   messageEl.innerText = message;
+  const messageClasses = classNames("");
+  messageEl.className = messageClasses;
 
   return messageEl;
 }

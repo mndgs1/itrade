@@ -1,7 +1,7 @@
 import { isLoggedIn } from "../../api/auth";
-import { icon } from "./primary/icon";
-import { button } from "./primary/button";
-// import { modal } from "./primary/modal";
+import { icon, button, modal } from "./primary";
+import { registerForm, loginForm } from "./forms";
+import { openModal } from "../../listeners/ui/openModal";
 
 // Adds Navigation menu
 export function navigation() {
@@ -9,7 +9,7 @@ export function navigation() {
   const ul = document.createElement("ul");
   ul.classList.add("flex", "flex-row", "items-center", "gap-2");
   const li = document.createElement("li");
-  li.appendChild(icon("fa-solid fa-magnifying-glass fa-lg"));
+  li.appendChild(icon({ className: "fa-solid fa-magnifying-glass fa-lg" }));
   // li.appendChild(modal(undefined, "searchModal"));
   ul.appendChild(li);
 
@@ -28,20 +28,29 @@ export function navigation() {
 function loggedOutNav(ul) {
   const li1 = document.createElement("li");
   li1.appendChild(
-    button({ success: true, text: "Login" }, null, "openLoginModal")
+    button({
+      success: true,
+      text: "Login",
+      data: "openLoginModal",
+      listeners: { click: (e) => openModal(e) },
+    })
   );
-  // li1.appendChild(modal(undefined, "loginModal"));
+  li1.appendChild(modal({ element: loginForm(), data: "loginModal" }));
   ul.appendChild(li1);
 
   const li2 = document.createElement("li");
   li2.appendChild(
-    button({ primary: true, text: "Register" }, null, "openRegisterModal")
+    button({
+      primary: true,
+      text: "Register",
+      data: "openRegisterModal",
+    })
   );
-  // li2.appendChild(modal(undefined, "regModal"));
+  li2.appendChild(modal({ element: registerForm(), data: "regModal" }));
   ul.appendChild(li2);
 }
 
-// Adds Balance & User menu
+// Adds User credit Balance & User menu
 function loggedInNav(ul) {
   const profile = JSON.parse(localStorage.getItem("profile"));
 
@@ -52,7 +61,10 @@ function loggedInNav(ul) {
   const li2 = document.createElement("li");
   if (!profile.avatar) {
     li2.appendChild(
-      icon("fa-solid fa-circle-user fa-2xl", null, "openMenuDialog")
+      icon({
+        className: "fa-solid fa-circle-user fa-2xl",
+        data: "openMenuDialog",
+      })
     );
   } else {
     const userAvatar = document.createElement("img");

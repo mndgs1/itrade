@@ -1,3 +1,5 @@
+// OLD CODE
+
 import { isLoggedIn } from "../api/auth";
 import { loginModal } from "./home/loginModal";
 import { registerModal } from "./home/registerModal";

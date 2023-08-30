@@ -1,22 +1,21 @@
 import classNames from "classnames";
 
-export function button(
-  {
-    text,
-    primary,
-    secondary,
-    success,
-    warning,
-    danger,
-    outline,
-    rounded,
-    loading,
-    ...rest
-  },
+export function button({
   id,
   data,
-  type
-) {
+  type,
+  text,
+  listeners,
+  primary,
+  secondary,
+  success,
+  warning,
+  danger,
+  outline,
+  rounded,
+  loading,
+  ...rest
+}) {
   const classes = classNames(
     rest.className,
     "flex items-center px-3 py-1.5 border h-8",
@@ -39,21 +38,17 @@ export function button(
 
   const button = document.createElement("button");
 
+  for (const type in listeners) {
+    button.addEventListener(type, listeners[type]);
+  }
+
   button.innerText = text;
   button.disabled = loading;
   button.className = classes;
 
-  if (id) {
-    button.id = id;
-  }
-
-  if (data) {
-    button.setAttribute("data", data);
-  }
-
-  if (type) {
-    button.type = type;
-  }
+  button.id = id;
+  button.setAttribute("data", data);
+  button.type = type;
 
   return button;
 }
