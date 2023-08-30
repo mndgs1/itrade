@@ -1,4 +1,4 @@
-import { header } from "./header.js";
+import { header } from "./header";
 import { main } from "./main.js";
 import { listings } from "./home/listings.js";
 
