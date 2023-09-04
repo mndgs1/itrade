@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { navigation } from "./navigation";
-import { logo } from "./primary/logo";
+import { logo } from "./components/primary/logo";
 
 export function header() {
   const header = document.createElement("header");

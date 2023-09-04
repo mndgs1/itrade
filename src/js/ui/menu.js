@@ -1,4 +1,4 @@
-import { link } from "./primary/link";
+import { link } from "./components/primary/link";
 
 export function menu() {
   const menu = document.createElement("div");

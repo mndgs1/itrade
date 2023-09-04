@@ -1,6 +1,6 @@
-import { isLoggedIn } from "../../api/auth";
-import { icon, button, modal } from "./primary";
-import { registerForm, loginForm, searchForm } from "./forms";
+import { isLoggedIn } from "../api/auth";
+import { icon, button, modal } from "./components/primary";
+import { registerForm, loginForm, searchForm } from "./components/forms";
 import { menu } from "./menu";
 
 // Adds Navigation menu
