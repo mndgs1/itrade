@@ -16,10 +16,10 @@ export async function registerListener(event) {
     return alert("Oops! There was a problem creating your a account");
   }
 
-  // try {
-  //     await auth.login(email, password);
-  //     location.reload();
-  // } catch {
-  //     return alert("There was a problem logging into your new account");
-  // }
+  try {
+    await auth.login(email, password);
+    location.reload();
+  } catch {
+    return alert("There was a problem logging into your new account");
+  }
 }

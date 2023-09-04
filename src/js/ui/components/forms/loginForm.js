@@ -4,6 +4,8 @@ import { inputConfig } from "../constants/inputConfig.js";
 
 export function loginForm() {
   const form = document.createElement("form");
+  form.id = "loginForm";
+  form.method = "dialog";
   form.appendChild(heading({ h1: true, text: "Login" }));
 
   form.appendChild(formWrap());
@@ -15,7 +17,7 @@ export function loginForm() {
 function formWrap() {
   const formWrap = document.createElement("div");
   const wrapClasses = classNames(
-    "border-b border-gray-900/10 pb-12 space-y-12 mt-10"
+    "border-b border-gray-900/10 pb-12 space-y-4 mt-10"
   );
   formWrap.className = wrapClasses;
 
@@ -31,10 +33,15 @@ function buttonsWrap() {
   buttonsWrap.className = wrapClasses;
 
   buttonsWrap.appendChild(
-    button({ data: "close-loginModal", secondary: true, text: "Close" })
+    button({ data: "loginClose", secondary: true, text: "Close" })
   );
   buttonsWrap.appendChild(
-    button({ type: "submit", success: true, text: "Login" })
+    button({
+      type: "submit",
+      success: true,
+      text: "Login",
+      id: "loginSubmitBtn",
+    })
   );
 
   return buttonsWrap;

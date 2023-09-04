@@ -1,9 +1,10 @@
 import classNames from "classnames";
-import { input, button, heading, message } from "../primary/index.js";
+import { input, button, heading } from "../primary/index.js";
 import { inputConfig } from "../constants/inputConfig.js";
 
 export function registerForm() {
   const form = document.createElement("form");
+  form.id = "registerForm";
   form.appendChild(heading({ h1: true, text: "Registration form" }));
 
   form.appendChild(formWrap());
@@ -15,17 +16,9 @@ export function registerForm() {
 function formWrap() {
   const formWrap = document.createElement("div");
   const wrapClasses = classNames(
-    "border-b border-gray-900/10 pb-12 space-y-12 mt-10"
+    "border-b border-gray-900/10 pb-12 space-y-4 mt-10"
   );
   formWrap.className = wrapClasses;
-
-  formWrap.appendChild(heading({ h2: true, text: "Profile" }));
-  formWrap.appendChild(
-    message({
-      primary: true,
-      text: "This information will be displayed publicly so be careful what you share.",
-    })
-  );
 
   formWrap.appendChild(input(inputConfig.username));
   formWrap.appendChild(input(inputConfig.email));
@@ -41,10 +34,15 @@ function buttonsWrap() {
   buttonsWrap.className = wrapClasses;
 
   buttonsWrap.appendChild(
-    button({ data: "close-registerModal", secondary: true, text: "Close" })
+    button({ data: "registerClose", secondary: true, text: "Close" })
   );
   buttonsWrap.appendChild(
-    button({ type: "submit", primary: true, text: "Register" })
+    button({
+      type: "submit",
+      primary: true,
+      text: "Register",
+      id: "registerSubmitBtn",
+    })
   );
 
   return buttonsWrap;

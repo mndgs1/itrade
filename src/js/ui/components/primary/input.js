@@ -16,7 +16,9 @@ export function input({
   });
 
   wrap.className = wrapClasses;
-  wrap.appendChild(createLabel(id, label));
+  if (label) {
+    wrap.appendChild(createLabel(id, label));
+  }
   wrap.appendChild(createInput(id, attributes));
 
   if (message) {

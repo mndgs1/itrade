@@ -1,8 +1,8 @@
 // OLD CODE
 
-import { isLoggedIn } from "../api/auth";
-import { loginModal } from "./home/loginModal";
-import { registerModal } from "./home/registerModal";
+import { isLoggedIn } from "../../api/auth";
+import { loginModal } from "./loginModal";
+import { registerModal } from "./registerModal";
 
 export function header() {
   createHeaderElement();

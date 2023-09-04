@@ -17,7 +17,7 @@ export function header() {
 function headerContentWrap() {
   const wrap = document.createElement("div");
   const wrapClasses = classNames(
-    "m-auto flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl"
+    "px-4 m-auto flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl"
   );
   wrap.className = wrapClasses;
   wrap.appendChild(logo());

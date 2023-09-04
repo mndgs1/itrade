@@ -3,6 +3,7 @@ export function logo() {
   logo.classList.add("p-2");
   logo.innerHTML = `iTrade`;
   logo.href = "/";
+  logo.id = "homeButton";
 
   return logo;
 }

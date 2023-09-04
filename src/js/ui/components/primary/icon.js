@@ -9,8 +9,11 @@ export function icon({ className, id, data }) {
   icon.className = iconClassNames;
 
   button.appendChild(icon);
-  button.id = id;
-  button.setAttribute("data", data);
+  if (id) {
+    button.id = id;
+  } else if (data) {
+    button.setAttribute("data", data);
+  }
 
   return button;
 }

@@ -46,9 +46,15 @@ export function button({
   button.disabled = loading;
   button.className = classes;
 
-  button.id = id;
-  button.setAttribute("data", data);
-  button.type = type;
+  if (id) {
+    button.id = id;
+  }
+  if (type) {
+    button.setAttribute("type", type);
+  }
+  if (data) {
+    button.setAttribute("data", data);
+  }
 
   return button;
 }

@@ -1,7 +1,7 @@
 import { isLoggedIn } from "../../api/auth";
 import { icon, button, modal } from "./primary";
-import { registerForm, loginForm } from "./forms";
-import { openModal } from "../../listeners/ui/openModal";
+import { registerForm, loginForm, searchForm } from "./forms";
+import { menu } from "./menu";
 
 // Adds Navigation menu
 export function navigation() {
@@ -9,8 +9,15 @@ export function navigation() {
   const ul = document.createElement("ul");
   ul.classList.add("flex", "flex-row", "items-center", "gap-2");
   const li = document.createElement("li");
-  li.appendChild(icon({ className: "fa-solid fa-magnifying-glass fa-lg" }));
-  // li.appendChild(modal(undefined, "searchModal"));
+  li.appendChild(
+    icon({
+      className: "fa-solid fa-magnifying-glass fa-lg",
+      data: "searchOpen",
+    })
+  );
+  li.appendChild(
+    modal({ element: searchForm(), data: "searchDialog", dialog: true })
+  );
   ul.appendChild(li);
 
   if (!isLoggedIn()) {
@@ -24,30 +31,34 @@ export function navigation() {
   return nav;
 }
 
-// Adds login/register buttons
+// Adds login/register buttons& modals
 function loggedOutNav(ul) {
   const li1 = document.createElement("li");
-  li1.appendChild(
-    button({
-      success: true,
-      text: "Login",
-      data: "openLoginModal",
-      listeners: { click: (e) => openModal(e) },
-    })
-  );
-  li1.appendChild(modal({ element: loginForm(), data: "loginModal" }));
+  const loginModal = modal({
+    element: loginForm(),
+    data: "loginModal",
+    modal: true,
+  });
+
+  li1.appendChild(button({ success: true, text: "Login", data: "loginOpen" }));
   ul.appendChild(li1);
+  li1.appendChild(loginModal);
 
   const li2 = document.createElement("li");
+  const regModal = modal({
+    element: registerForm(),
+    data: "registerModal",
+    modal: true,
+  });
+  ul.appendChild(li2);
   li2.appendChild(
     button({
       primary: true,
       text: "Register",
-      data: "openRegisterModal",
+      data: "registerOpen",
     })
   );
-  li2.appendChild(modal({ element: registerForm(), data: "regModal" }));
-  ul.appendChild(li2);
+  li2.appendChild(regModal);
 }
 
 // Adds User credit Balance & User menu
@@ -63,7 +74,7 @@ function loggedInNav(ul) {
     li2.appendChild(
       icon({
         className: "fa-solid fa-circle-user fa-2xl",
-        data: "openMenuDialog",
+        data: "openMenu",
       })
     );
   } else {
@@ -71,6 +82,6 @@ function loggedInNav(ul) {
     userAvatar.src = profile.avatar;
     li2.appendChild(userAvatar);
   }
-  // li2.appendChild(modal(undefined, "menuDialog"));
+  li2.appendChild(modal({ element: menu(), data: "menuDialog", dialog: true }));
   ul.appendChild(li2);
 }

@@ -1,9 +1,11 @@
 import { header } from "./components/header";
-import { main } from "./main.js";
+import { main } from "./components/main.js";
 import { listings } from "./home/listings.js";
+import { headerListeners } from "../listeners/ui/headerListeners";
 
 export default () => {
   header();
+  headerListeners();
   main();
   listings();
 };
