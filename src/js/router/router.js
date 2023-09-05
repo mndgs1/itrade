@@ -26,6 +26,10 @@ export default function router() {
       footer();
       break;
     case "/profile":
+      header();
+      headerListeners();
+      main();
       profile();
+      footer();
   }
 }
