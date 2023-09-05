@@ -2,7 +2,7 @@ import classNames from "classnames";
 
 export function modal({ element, data, modal, dialog, ...rest }) {
   const modalEl = document.createElement("dialog");
-  const modalClasses = classNames(rest.className, "", {
+  const modalClasses = classNames(rest.className, "rounded", {
     "p-10": modal,
     "": dialog,
   });

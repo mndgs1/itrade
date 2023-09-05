@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import { card, heading } from "./components/primary";
-import { getListings } from "../api/listings";
+import { card, heading } from "../components/primary";
+import { getListings } from "../../api/listings";
 
 export async function listings() {
   const main = document.querySelector("main");

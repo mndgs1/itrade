@@ -1,9 +1,10 @@
 import classNames from "classnames";
 
 export function icon({ className, id, data }) {
-  const iconClassNames = classNames(className);
+  const iconClassNames = classNames(className, "");
   const button = document.createElement("button");
-  button.classList.add("p-2");
+  const buttonClassNames = classNames("");
+  button.className = buttonClassNames;
 
   const icon = document.createElement("i");
   icon.className = iconClassNames;

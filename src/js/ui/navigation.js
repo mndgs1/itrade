@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { isLoggedIn } from "../api/auth";
 import { icon, button, modal } from "./components/primary";
 import { registerForm, loginForm, searchForm } from "./components/forms";
@@ -6,8 +7,13 @@ import { menu } from "./menu";
 // Adds Navigation menu
 export function navigation() {
   const nav = document.createElement("nav");
+  const navClasses = classNames("flex align-middle");
+  nav.className = navClasses;
+
   const ul = document.createElement("ul");
-  ul.classList.add("flex", "flex-row", "items-center", "gap-2");
+  const ulClasses = classNames("flex flex-row items-center gap-3");
+  ul.className = ulClasses;
+
   const li = document.createElement("li");
   li.appendChild(
     icon({
@@ -15,10 +21,17 @@ export function navigation() {
       data: "searchOpen",
     })
   );
+
+  const li1 = document.createElement("li");
+  li1.appendChild(
+    icon({ className: "fa-solid fa-moon fa-lg", id: "changeTheme" })
+  );
+
   li.appendChild(
     modal({ element: searchForm(), data: "searchDialog", dialog: true })
   );
   ul.appendChild(li);
+  ul.appendChild(li1);
 
   if (!isLoggedIn()) {
     loggedOutNav(ul);
@@ -40,7 +53,9 @@ function loggedOutNav(ul) {
     modal: true,
   });
 
-  li1.appendChild(button({ success: true, text: "Login", data: "loginOpen" }));
+  li1.appendChild(
+    button({ success: true, rounded: true, text: "Login", data: "loginOpen" })
+  );
   ul.appendChild(li1);
   li1.appendChild(loginModal);
 

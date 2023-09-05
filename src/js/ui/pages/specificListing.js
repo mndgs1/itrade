@@ -1,5 +1,5 @@
-import { message, heading, container } from "./components/primary";
-import { getListing } from "../api/listings";
+import { message, heading, container } from "../components/primary";
+import { getListing } from "../../api/listings";
 
 export async function specificListing() {
   const listing = await getListing(getSearchParams().id);

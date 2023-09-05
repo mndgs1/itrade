@@ -2,7 +2,7 @@ export const inputConfig = {
   username: {
     id: "username",
     label: "Username",
-    message: "Must contain atleast 8 characters",
+    text: "Must contain atleast 8 characters",
     attributes: {
       type: "text",
       required: true,
@@ -12,7 +12,7 @@ export const inputConfig = {
   email: {
     id: "email",
     label: "Email",
-    message: "Enter a valid student email address @stud.noroff.no",
+    text: "Enter a valid student email address @stud.noroff.no",
     attributes: {
       type: "email",
       required: true,
@@ -25,7 +25,7 @@ export const inputConfig = {
   password: {
     id: "password",
     label: "Password",
-    message: "Password must contain at least 8 characters",
+    text: "Password must contain at least 8 characters",
     attributes: {
       type: "password",
       required: true,
@@ -37,7 +37,7 @@ export const inputConfig = {
     long: true,
     id: "avatar",
     label: "Avatar",
-    message: "Please enter an avatar URL",
+    text: "Please enter an avatar URL",
     attributes: {
       type: "text",
       placeholder: "https://www.myavatar.com/avatar1",

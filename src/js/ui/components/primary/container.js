@@ -8,6 +8,7 @@ export function container({
   listings,
   tags,
   seller,
+  profile,
   ...rest
 }) {
   const containerClasses = classNames(rest.className, "", {
@@ -18,6 +19,7 @@ export function container({
     "2xl": listings,
     "string of classes": tags,
     "string of classes2": seller,
+    "profile-classes": profile,
   });
 
   const containerEl = document.createElement("div");

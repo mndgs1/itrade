@@ -1,16 +1,9 @@
 import classNames from "classnames";
+import { message } from "./message";
 
-export function input({
-  long,
-  short,
-  id,
-  label,
-  message,
-  attributes,
-  ...rest
-}) {
+export function input({ long, short, id, label, text, attributes, ...rest }) {
   const wrap = document.createElement("div");
-  const wrapClasses = classNames(rest.className, "", {
+  const wrapClasses = classNames(rest.className, "font-serif", {
     "sm:col-span-4": short,
     "sm:col-span-6": long,
   });
@@ -21,8 +14,8 @@ export function input({
   }
   wrap.appendChild(createInput(id, attributes));
 
-  if (message) {
-    wrap.appendChild(createInputMessage(message));
+  if (text) {
+    wrap.appendChild(message({ text: text, input: true }));
   }
 
   return wrap;
@@ -30,9 +23,7 @@ export function input({
 
 function createLabel(id, label) {
   const labelEl = document.createElement("label");
-  const labelClasses = classNames(
-    "block text-sm font-medium leading-6 text-gray-900"
-  );
+  const labelClasses = classNames("font-serif block ");
   labelEl.className = labelClasses;
   labelEl.setAttribute("for", id);
   labelEl.innerText = label;
@@ -50,18 +41,9 @@ function createInput(id, attributes) {
   inputEl.setAttribute("id", id);
   inputEl.setAttribute("name", id);
   const inputClasses = classNames(
-    "mt-2 block w-full rounded-md border-0  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+    "mt-1 block w-full rounded-md border-0  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
   );
   inputEl.className = inputClasses;
 
   return inputEl;
-}
-
-function createInputMessage(message) {
-  const messageEl = document.createElement("p");
-  messageEl.innerText = message;
-  const messageClasses = classNames("");
-  messageEl.className = messageClasses;
-
-  return messageEl;
 }

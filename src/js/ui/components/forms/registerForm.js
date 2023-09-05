@@ -5,7 +5,7 @@ import { inputConfig } from "../constants/inputConfig.js";
 export function registerForm() {
   const form = document.createElement("form");
   form.id = "registerForm";
-  form.appendChild(heading({ h1: true, text: "Registration form" }));
+  form.appendChild(heading({ h1: true, text: "Register" }));
 
   form.appendChild(formWrap());
   form.appendChild(buttonsWrap());
