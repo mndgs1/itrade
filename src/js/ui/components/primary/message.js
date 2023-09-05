@@ -7,6 +7,7 @@ export function message({
   warning,
   danger,
   text,
+  tag,
   ...rest
 }) {
   const headingClasses = classNames(rest.className, "", {
@@ -15,6 +16,7 @@ export function message({
     "2xl": success,
     "string of classes": warning,
     "string of classes2": danger,
+    "": tag,
   });
 
   const headingEl = document.createElement("p");

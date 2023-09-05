@@ -14,7 +14,7 @@ export function heading({ h1, h2, h3, h4, text, ...rest }) {
   }
   const headingClasses = classNames(rest.className, "", {
     "3xl": h1,
-    "2xl": h2,
+    "2xl ": h2,
     "string of classes": h3,
     "string of classes2": h4,
   });
