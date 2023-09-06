@@ -11,6 +11,7 @@ export default function router() {
 
   switch (path) {
     case "/":
+    case "/index.html":
       header();
       headerListeners();
       main();

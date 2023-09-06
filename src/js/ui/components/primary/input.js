@@ -4,7 +4,7 @@ import { message } from "./message";
 export function input({ long, short, id, label, text, attributes, ...rest }) {
   const wrap = document.createElement("div");
   const wrapClasses = classNames(rest.className, "font-serif", {
-    "sm:col-span-4": short,
+    "max-w-sm": short,
     "sm:col-span-6": long,
   });
 

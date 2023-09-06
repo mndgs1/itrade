@@ -8,8 +8,10 @@ export async function register(name, email, password, avatar) {
     headers: headers("application/json"),
   });
 
+  const json = await response.json();
+
   if (response.ok) {
-    return await response.json();
+    return json;
   } else {
     throw new Error(response.statusText);
   }

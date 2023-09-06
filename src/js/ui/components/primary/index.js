@@ -8,3 +8,4 @@ export * from "./modal.js";
 export * from "./image.js";
 export * from "./card.js";
 export * from "./container.js";
+export * from "./loader.js";

@@ -16,22 +16,26 @@ export async function listings() {
   const listings = await getListings();
 
   listings.forEach((listing) => {
-    let lastBid = 0;
-
-    if (listing.bids.length !== 0) {
-      const lastBidIndex = listing.bids.length - 1;
-      const lastBidAmount = listing.bids[lastBidIndex].amount;
-
-      lastBid = lastBidAmount;
-    }
-    listingsWrap.appendChild(
-      card({
-        img: listing.media[0],
-        title: listing.title,
-        price: lastBid,
-        bidCount: listing.bids.length,
-        id: listing.id,
-      })
-    );
+    createListingCard(listing, listingsWrap);
   });
+}
+
+export function createListingCard(listing, container) {
+  let lastBid = 0;
+
+  if (listing.bids.length !== 0) {
+    const lastBidIndex = listing.bids.length - 1;
+    const lastBidAmount = listing.bids[lastBidIndex].amount;
+
+    lastBid = lastBidAmount;
+  }
+  container.appendChild(
+    card({
+      img: listing.media[0],
+      title: listing.title,
+      price: lastBid,
+      bidCount: listing.bids.length,
+      id: listing.id,
+    })
+  );
 }
