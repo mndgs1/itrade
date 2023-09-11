@@ -25,8 +25,11 @@ export async function listings({ search }) {
 
   main.appendChild(listingsWrap);
 
-  listings.forEach((listing) => {
-    createListingCard(listing, listingsWrap);
+  let offset = [0];
+
+  addListings(listings, listingsWrap);
+  document.addEventListener("scroll", function () {
+    checkScrollToBottom(listingsWrap, offset, search);
   });
 }
 
@@ -48,4 +51,26 @@ export function createListingCard(listing, container) {
       id: listing.id,
     })
   );
+}
+
+export function addListings(listings, container) {
+  listings.forEach((listing) => {
+    createListingCard(listing, container);
+  });
+}
+
+async function checkScrollToBottom(container, offset, searchTerm) {
+  const scrollHeight = document.documentElement.scrollHeight;
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const clientHeight = document.documentElement.clientHeight;
+
+  if (scrollHeight - scrollTop === clientHeight) {
+    // You have scrolled to the bottom, so create and add the element
+    offset[0] += 10;
+    const listings = await getListings({ offset: offset, tag: searchTerm });
+    if (listings.length <= 0) {
+      return;
+    }
+    addListings(listings, container);
+  }
 }

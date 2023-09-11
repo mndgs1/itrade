@@ -36,7 +36,6 @@ export const inputConfig = {
     },
   },
   avatar: {
-    long: true,
     id: "avatar",
     label: "Avatar",
     text: "Please enter an avatar URL",

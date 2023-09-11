@@ -60,6 +60,9 @@ export function headerListeners() {
   console.log(main);
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!searchInput.value) {
+      return;
+    }
     clear(main);
     listings({ search: searchInput.value });
     searchInput.value = "";

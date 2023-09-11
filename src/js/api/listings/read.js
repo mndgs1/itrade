@@ -2,13 +2,14 @@ import { apiPath } from "../constants";
 import { headers } from "../headers";
 
 export async function getListings({
-  limit = 20,
+  limit = 10,
   offset = 0,
   seller = false,
   bids = true,
   tag = "",
   active = true,
 } = {}) {
+  console.log("get listings was called");
   const response = await fetch(
     `${apiPath}/auction/listings?limit=${limit}&offset=${offset}&_seller=${seller}&_bids=${bids}&_tag=${tag}&active=${active}`,
     { headers: headers() }
