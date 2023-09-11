@@ -2,6 +2,8 @@ import { isLoggedIn } from "../../api/auth";
 import { loginListener } from "../auth/login";
 import { registerListener } from "../auth/register";
 import { remove } from "../../storage";
+import { listings } from "../../ui";
+import { clear } from "../../tools";
 
 export function headerListeners() {
   if (!isLoggedIn()) {
@@ -51,4 +53,15 @@ export function headerListeners() {
       remove("profile");
     });
   }
+
+  const searchForm = document.querySelector("#searchForm");
+  const searchInput = document.querySelector("#search");
+  const main = document.querySelector("main");
+  console.log(main);
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    clear(main);
+    listings({ search: searchInput.value });
+    searchInput.value = "";
+  });
 }

@@ -3,14 +3,19 @@ import { card, heading } from "../components/primary";
 import { getListings } from "../../api/listings";
 
 export async function listings({ search }) {
+  const listings = await getListings({ tag: search });
+
   const main = document.querySelector("main");
   const headingEl = heading({ h1: true, text: "Listings" });
 
+  main.appendChild(headingEl);
+
   if (search) {
-    headingEl.innerText = `Listings search: ${search}`;
+    main.appendChild(
+      heading({ h2: true, text: `Search results for: ${search}` })
+    );
   }
 
-  main.appendChild(headingEl);
   const listingsWrap = document.createElement("div");
   const listingsWrapClasses = classNames(
     "listings grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4"
@@ -19,7 +24,6 @@ export async function listings({ search }) {
   listingsWrap.className = listingsWrapClasses;
 
   main.appendChild(listingsWrap);
-  const listings = await getListings();
 
   listings.forEach((listing) => {
     createListingCard(listing, listingsWrap);

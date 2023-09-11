@@ -13,23 +13,23 @@ export default function router() {
     case "/":
     case "/index.html":
       header();
-      headerListeners();
       main();
+      headerListeners();
       listings({});
       footer();
 
       break;
     case "/listings/listing":
       header();
-      headerListeners();
       main();
+      headerListeners();
       specificListing();
       footer();
       break;
     case "/profile":
       header();
-      headerListeners();
       main();
+      headerListeners();
       profile();
       footer();
   }

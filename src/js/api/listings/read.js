@@ -1,16 +1,16 @@
 import { apiPath } from "../constants";
 import { headers } from "../headers";
 
-export async function getListings(
+export async function getListings({
   limit = 20,
   offset = 0,
   seller = false,
   bids = true,
-  tags = [],
-  active = true
-) {
+  tag = "",
+  active = true,
+} = {}) {
   const response = await fetch(
-    `${apiPath}/auction/listings?limit=${limit}&offset=${offset}&_seller=${seller}&_bids=${bids}&tags=${tags}&active=${active}`,
+    `${apiPath}/auction/listings?limit=${limit}&offset=${offset}&_seller=${seller}&_bids=${bids}&_tag=${tag}&active=${active}`,
     { headers: headers() }
   );
 
@@ -26,3 +26,4 @@ export async function getListing(id) {
     return response.json();
   }
 }
+// (limit = 20), (offset = 0), (seller = false), (bids = true), (tags = []), (active = true);
