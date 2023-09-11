@@ -4,12 +4,6 @@ import { registerListener } from "../auth/register";
 import { remove } from "../../storage";
 
 export function headerListeners() {
-  const searchButton = document.querySelector("[data='searchOpen']");
-  searchButton.addEventListener("click", () => {
-    const searchDialog = document.querySelector("[data='searchDialog']");
-    searchDialog.show();
-  });
-
   if (!isLoggedIn()) {
     const loginModal = document.querySelector("[data='loginModal']");
     const loginButton = document.querySelector("[data='loginOpen']");

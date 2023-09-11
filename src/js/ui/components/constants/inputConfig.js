@@ -1,3 +1,5 @@
+import { icon } from "../primary";
+
 export const inputConfig = {
   username: {
     id: "username",
@@ -44,10 +46,16 @@ export const inputConfig = {
     },
   },
   search: {
+    search: true,
     id: "search",
     attributes: {
       type: "text",
       placeholder: "Search...",
     },
+    button: icon({
+      className: "fa-solid fa-magnifying-glass fa-lg",
+      type: "submit",
+      id: "searchButton",
+    }),
   },
 };

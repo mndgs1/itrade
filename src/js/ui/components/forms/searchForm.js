@@ -7,5 +7,6 @@ export function searchForm() {
   const formClasses = classNames("");
   form.className = formClasses;
   form.appendChild(input(inputConfig.search));
+
   return form;
 }

@@ -15,23 +15,13 @@ export function navigation() {
   ul.className = ulClasses;
 
   const li = document.createElement("li");
-  li.appendChild(
-    icon({
-      className: "fa-solid fa-magnifying-glass fa-lg",
-      data: "searchOpen",
-    })
-  );
 
-  const li1 = document.createElement("li");
-  li1.appendChild(
-    icon({ className: "fa-solid fa-moon fa-lg", id: "changeTheme" })
-  );
+  // const li1 = document.createElement("li");
+  // li1.appendChild(icon({ className: "fa-solid fa-moon fa-lg", id: "changeTheme" }));
 
-  li.appendChild(
-    modal({ element: searchForm(), data: "searchDialog", dialog: true })
-  );
+  li.appendChild(searchForm());
   ul.appendChild(li);
-  ul.appendChild(li1);
+  // ul.appendChild(li1);
 
   if (!isLoggedIn()) {
     loggedOutNav(ul);
