@@ -15,8 +15,8 @@ export function input({
   const wrap = document.createElement("div");
   const wrapClasses = classNames(rest.className, "font-serif", {
     "max-w-sm": short,
-    "sm:col-span-6": long,
-    "relative shadow-sm": search,
+    "sm:w-4/12": long,
+    "relative shadow-sm sm:w-72": search,
   });
 
   wrap.className = wrapClasses;
@@ -56,7 +56,7 @@ function createInput(id, attributes) {
   inputEl.setAttribute("id", id);
   inputEl.setAttribute("name", id);
   const inputClasses = classNames(
-    "block w-full rounded-md border-0  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6"
+    "block w-full rounded-md border-0  py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm leading-6"
   );
   inputEl.className = inputClasses;
 

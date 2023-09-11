@@ -4,6 +4,7 @@ import { inputConfig } from "../constants/inputConfig.js";
 
 export function searchForm() {
   const form = document.createElement("form");
+  form.id = "searchForm";
   const formClasses = classNames("");
   form.className = formClasses;
   form.appendChild(input(inputConfig.search));

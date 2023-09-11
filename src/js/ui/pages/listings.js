@@ -2,9 +2,15 @@ import classNames from "classnames";
 import { card, heading } from "../components/primary";
 import { getListings } from "../../api/listings";
 
-export async function listings() {
+export async function listings({ search }) {
   const main = document.querySelector("main");
-  main.appendChild(heading({ h1: true, text: "Listings" }));
+  const headingEl = heading({ h1: true, text: "Listings" });
+
+  if (search) {
+    headingEl.innerText = `Listings search: ${search}`;
+  }
+
+  main.appendChild(headingEl);
   const listingsWrap = document.createElement("div");
   const listingsWrapClasses = classNames(
     "listings grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4"

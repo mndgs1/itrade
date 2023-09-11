@@ -15,7 +15,7 @@ export default function router() {
       header();
       headerListeners();
       main();
-      listings();
+      listings({});
       footer();
 
       break;
