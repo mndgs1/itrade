@@ -1,10 +1,15 @@
 import * as storage from "../storage";
 
-export function createOptions({ method = "GET", body, auth = false }) {
+export function createOptions({
+  method = "GET",
+  body,
+  auth = false,
+  headers = { contentType: "application/json" },
+}) {
   const options = {
     method,
     body,
-    headers: {},
+    headers,
   };
 
   if (auth) {

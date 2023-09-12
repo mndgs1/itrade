@@ -8,7 +8,7 @@ import {
   form,
 } from "../components/primary";
 import { clear } from "../../tools";
-import { getProfile } from "../../api/profiles";
+import { getProfile, setAvatar } from "../../api/profiles";
 import { load } from "../../storage";
 import { formConfig } from "../components/constants/formConfig";
 
@@ -88,10 +88,25 @@ function avatar(profile) {
   return avatar;
 }
 
-export function profileListeners() {
+export async function profileListeners() {
   const avatarModal = document.querySelector("[data='avatarModal']");
   const avatarButton = document.querySelector("[data='avatarOpen']");
   avatarButton.addEventListener("click", () => {
     avatarModal.showModal();
+  });
+
+  const avatarInput = document.querySelector("#avatar");
+  const avatarForm = document.querySelector("#avatarForm");
+
+  avatarForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const url = new URL(window.location.href);
+
+    const searchParams = url.searchParams;
+    const username = searchParams.get("name");
+
+    const response = setAvatar(username, avatarInput.value);
+    console.log(response);
   });
 }

@@ -43,5 +43,16 @@ export const formConfig = {
     id: "avatarForm",
     heading: "Change Avatar",
     method: "dialog",
+    inputs: [inputConfig.avatar],
+    buttons: [
+      { data: "avatarClose", secondary: true, text: "Close" },
+      {
+        type: "submit",
+        primary: true,
+        text: "Change",
+        id: "changeAvatarSubmitBtn",
+      },
+    ],
+    buttonWrap: true,
   },
 };
