@@ -4,14 +4,16 @@ import {
   heading,
   image,
   button,
+  modal,
+  form,
 } from "../components/primary";
 import { clear } from "../../tools";
 import { getProfile } from "../../api/profiles";
 import { load } from "../../storage";
+import { formConfig } from "../components/constants/formConfig";
 
 export async function profile() {
-  const main = document.querySelector("main");
-  clear(main);
+  clear("main");
 
   const url = new URL(window.location.href);
 
@@ -19,25 +21,43 @@ export async function profile() {
   const username = searchParams.get("name");
 
   const profile = await getProfile(username);
+  console.log(profile);
+
+  createProfileHTML(profile);
+  profileListeners();
+}
+
+function createProfileHTML(profile) {
+  const main = document.querySelector("main");
 
   const profileEl = container({ profile });
+  const currentUser = JSON.parse(load("profile")).name;
+
   main.appendChild(profileEl);
 
   profileEl.appendChild(heading({ h1: true, text: `${profile.name}` }));
-  profileEl.appendChild(avatar(profile));
 
-  const currentUser = JSON.parse(load("profile")).name;
-
+  const avatarContainer = container({ customClasses: "flex mb-2" });
+  avatarContainer.appendChild(avatar(profile));
   if (currentUser === profile.name) {
-    profileEl.appendChild(
+    avatarContainer.appendChild(
       button({
         primary: true,
         text: "Change",
-        customClasses: "",
-        data: "openAvatarModal",
+        data: "avatarOpen",
+      })
+    );
+
+    avatarContainer.appendChild(
+      modal({
+        element: form(formConfig.avatar),
+        data: "avatarModal",
+        modal: true,
       })
     );
   }
+
+  profileEl.appendChild(avatarContainer);
 
   profileEl.appendChild(
     message({ primary: true, text: `Name: ${profile.name}` })
@@ -56,7 +76,7 @@ function avatar(profile) {
     avatar = image({
       profile: true,
       src: "../../../../assets/Portrait_Placeholder.png",
-      alt: "Profile picture",
+      alt: "Avatar placeholder",
     });
   } else {
     avatar = image({
@@ -66,4 +86,12 @@ function avatar(profile) {
   }
 
   return avatar;
+}
+
+export function profileListeners() {
+  const avatarModal = document.querySelector("[data='avatarModal']");
+  const avatarButton = document.querySelector("[data='avatarOpen']");
+  avatarButton.addEventListener("click", () => {
+    avatarModal.showModal();
+  });
 }

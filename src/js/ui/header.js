@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { navigation } from "./";
-import { logo, button, modal, icon } from "./components/primary";
-import { searchForm, loginForm, registerForm } from "./components/forms";
+import { logo, button, modal, icon, form } from "./components/primary";
 import { isLoggedIn } from "../api/auth";
+import { formConfig } from "./components/constants/formConfig";
 
 export function header() {
   const header = document.createElement("header");
@@ -24,7 +24,7 @@ function headerContentWrap() {
   wrap.className = wrapClasses;
   wrap.appendChild(logo());
 
-  wrap.appendChild(searchForm());
+  wrap.appendChild(form(formConfig.search));
 
   wrap.appendChild(headerMenu());
 
@@ -50,7 +50,7 @@ function loggedInMenu(menuWrap) {
   const registerWrap = document.createElement("div");
 
   const loginModal = modal({
-    element: loginForm(),
+    element: form(formConfig.login),
     data: "loginModal",
     modal: true,
   });
@@ -62,7 +62,7 @@ function loggedInMenu(menuWrap) {
   menuWrap.appendChild(loginWrap);
 
   const regModal = modal({
-    element: registerForm(),
+    element: form(formConfig.register),
     data: "registerModal",
     modal: true,
   });
@@ -86,6 +86,7 @@ function loggedOutMenu(menuWrap) {
   menuWrap.appendChild(creditsWrap);
 
   const userWrap = document.createElement("div");
+
   if (!profile.avatar) {
     userWrap.appendChild(
       icon({

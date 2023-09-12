@@ -4,7 +4,7 @@ export const inputConfig = {
   username: {
     id: "username",
     label: "Username",
-    text: "Must contain atleast 8 characters",
+    text: "",
     attributes: {
       type: "text",
       required: true,
