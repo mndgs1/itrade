@@ -66,7 +66,7 @@ async function checkScrollToBottom(container, offset, searchTerm) {
 
   if (scrollHeight - scrollTop === clientHeight) {
     // You have scrolled to the bottom, so create and add the element
-    offset[0] += 10;
+    offset[0] += 20;
     const listings = await getListings({ offset: offset, tag: searchTerm });
     if (listings.length <= 0) {
       return;

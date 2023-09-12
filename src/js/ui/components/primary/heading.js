@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-export function heading({ h1, h2, h3, h4, text, ...rest }) {
+export function heading({ h1, h2, h3, h4, text, customClasses }) {
   let headingType;
 
   if (h1) {
@@ -12,7 +12,7 @@ export function heading({ h1, h2, h3, h4, text, ...rest }) {
   } else if (h4) {
     headingType = "h4";
   }
-  const headingClasses = classNames(rest.className, "", {
+  const headingClasses = classNames(customClasses, "", {
     "mt-4 mb-2 text-4xl md:text-5xl md:mt-6 md:mb-4": h1,
     "mt-2 mb-2 text-lg md:text-xl": h2,
     "string of classes": h3,

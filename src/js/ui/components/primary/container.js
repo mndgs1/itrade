@@ -9,9 +9,9 @@ export function container({
   tags,
   seller,
   profile,
-  ...rest
+  customClasses,
 }) {
-  const containerClasses = classNames(rest.className, "", {
+  const containerClasses = classNames(customClasses, "", {
     "header-classes": header,
     "specificListing-classes": specificListing,
     "specificListingMedia-classes": specificListingMedia,

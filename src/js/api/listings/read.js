@@ -1,30 +1,31 @@
-import { apiPath } from "../constants";
-import { headers } from "../headers";
+import { makeApiCall } from "../";
 
 export async function getListings({
-  limit = 10,
+  limit = 20,
   offset = 0,
   seller = false,
   bids = true,
   tag = "",
   active = true,
 } = {}) {
-  console.log("get listings was called");
-  const response = await fetch(
-    `${apiPath}/auction/listings?limit=${limit}&offset=${offset}&_seller=${seller}&_bids=${bids}&_tag=${tag}&active=${active}`,
-    { headers: headers() }
-  );
+  const endpoint = `/auction/listings?limit=${limit}&offset=${offset}&_seller=${seller}&_bids=${bids}&_tag=${tag}&active=${active}`;
 
-  if (response.ok) {
-    return response.json();
+  const { data, error } = await makeApiCall(endpoint);
+
+  if (error) {
+    return error;
   }
+
+  return data;
 }
 
 export async function getListing(id) {
-  const response = await fetch(`${apiPath}/auction/listings/${id}`);
-
-  if (response.ok) {
-    return response.json();
+  const endpoint = `/auction/listings/${id}`;
+  const { data, error } = await makeApiCall(endpoint);
+  if (error) {
+    return error;
   }
+
+  return data;
 }
 // (limit = 20), (offset = 0), (seller = false), (bids = true), (tags = []), (active = true);

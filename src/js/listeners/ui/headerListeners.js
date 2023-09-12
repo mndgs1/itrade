@@ -57,7 +57,6 @@ export function headerListeners() {
   const searchForm = document.querySelector("#searchForm");
   const searchInput = document.querySelector("#search");
   const main = document.querySelector("main");
-  console.log(main);
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!searchInput.value) {

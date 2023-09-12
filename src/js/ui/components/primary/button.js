@@ -13,10 +13,10 @@ export function button({
   danger,
   outline,
   loading,
-  ...rest
+  customClasses,
 }) {
   const classes = classNames(
-    rest.className,
+    customClasses,
     "flex items-center px-3 py-1.5 border h-8 rounded",
     {
       "opacity-80": loading,
