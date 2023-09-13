@@ -4,6 +4,7 @@ import { registerListener } from "../auth/register";
 import { remove } from "../../storage";
 import { listings } from "../../ui";
 import { clear } from "../../tools";
+import { setAvatar } from "../../api/profiles";
 
 export function headerListeners() {
   if (!isLoggedIn()) {
@@ -65,5 +66,33 @@ export function headerListeners() {
     clear(main);
     listings({ search: searchInput.value });
     searchInput.value = "";
+  });
+}
+
+export async function profileListeners() {
+  const avatarModal = document.querySelector("[data='avatarModal']");
+  const avatarButton = document.querySelector("[data='avatarOpen']");
+  avatarButton.addEventListener("click", () => {
+    avatarModal.showModal();
+  });
+
+  const avatarInput = document.querySelector("#avatar");
+  const avatarForm = document.querySelector("#avatarForm");
+
+  avatarForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const url = new URL(window.location.href);
+
+    const searchParams = url.searchParams;
+    const username = searchParams.get("name");
+
+    const response = setAvatar(username, avatarInput.value);
+    console.log(response);
+  });
+
+  const avatarCloseButton = document.querySelector("[data='avatarClose']");
+  avatarCloseButton.addEventListener("click", () => {
+    avatarModal.close();
   });
 }

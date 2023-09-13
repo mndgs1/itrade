@@ -86,12 +86,12 @@ function loggedOutMenu(menuWrap) {
   menuWrap.appendChild(creditsWrap);
 
   const userWrap = document.createElement("div");
+  userWrap.setAttribute("data", "openMenu");
 
   if (!profile.avatar) {
     userWrap.appendChild(
       icon({
         className: "fa-solid fa-circle-user fa-2xl",
-        data: "openMenu",
       })
     );
   } else {

@@ -3,15 +3,10 @@ import { makeApiCall, createOptions } from "..";
 export async function setAvatar(username, avatarUrl) {
   const endpoint = `/auction/profiles/${username}/media`;
 
-  const optionsBody = { avatar: avatarUrl };
-
   const options = createOptions({
-    method: "put",
-    body: JSON.stringify(optionsBody),
+    method: "PUT",
+    body: JSON.stringify({ avatar: avatarUrl }),
     auth: true,
-    headers: {
-      contentType: "application/json",
-    },
   });
 
   console.log(options);
