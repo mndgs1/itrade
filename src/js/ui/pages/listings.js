@@ -18,7 +18,7 @@ export async function listings({ search }) {
 
   const listingsWrap = document.createElement("div");
   const listingsWrapClasses = classNames(
-    "listings grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4"
+    "listings grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5"
   );
 
   listingsWrap.className = listingsWrapClasses;

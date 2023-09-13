@@ -1,15 +1,12 @@
 import { header } from "../ui/header";
 import { listings } from "../ui/pages/listings";
 import { main } from "../ui/main";
-import {
-  headerListeners,
-  profileListeners,
-} from "../listeners/ui/headerListeners";
+import { headerListeners, profileListeners } from "../listeners/builders/";
 import { specificListing } from "../ui/pages/specificListing";
 import { profile } from "../ui";
 import { footer } from "../ui/footer";
 
-export default function router() {
+export default async function router() {
   const path = window.location.pathname;
 
   switch (path) {
@@ -33,7 +30,7 @@ export default function router() {
       header();
       main();
       headerListeners();
-      profile();
+      await profile();
       profileListeners();
       footer();
   }

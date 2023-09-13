@@ -41,7 +41,7 @@ export const formConfig = {
   },
   avatar: {
     id: "avatarForm",
-    heading: "Change Avatar",
+    headingEl: "Change Avatar",
     inputs: [inputConfig.avatar],
     buttons: [
       { data: "avatarClose", secondary: true, text: "Close" },
@@ -53,5 +53,27 @@ export const formConfig = {
       },
     ],
     buttonWrap: true,
+  },
+  createListing: {
+    id: "createAuctionForm",
+    headingEl: "Create Auction",
+    inputs: [
+      inputConfig.title,
+      inputConfig.description,
+      inputConfig.tags,
+      inputConfig.media,
+      inputConfig.endsAt,
+    ],
+    buttons: [
+      { data: "createAuctionClose", secondary: true, text: "Close" },
+      {
+        type: "submit",
+        primary: true,
+        text: "Crate Auction",
+        id: "createAuctionSubmit",
+      },
+    ],
+    buttonWrap: true,
+    formWrap: true,
   },
 };

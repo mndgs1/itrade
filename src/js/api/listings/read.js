@@ -20,7 +20,7 @@ export async function getListings({
 }
 
 export async function getListing(id) {
-  const endpoint = `/auction/listings/${id}`;
+  const endpoint = `/auction/listings/${id}?_bids=true&_seller=true`;
   const { data, error } = await makeApiCall(endpoint);
   if (error) {
     return error;
@@ -28,4 +28,3 @@ export async function getListing(id) {
 
   return data;
 }
-// (limit = 20), (offset = 0), (seller = false), (bids = true), (tags = []), (active = true);

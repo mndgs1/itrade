@@ -17,7 +17,7 @@ export function button({
 }) {
   const classes = classNames(
     customClasses,
-    "flex items-center px-3 py-1.5 border h-8 rounded",
+    "flex items-center px-4 py-3 border h-8 rounded",
     {
       "opacity-80": loading,
       "border-blue-500 bg-blue-500 text-white": primary,

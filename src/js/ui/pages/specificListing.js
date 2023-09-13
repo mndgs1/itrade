@@ -3,6 +3,7 @@ import { getListing } from "../../api/listings";
 
 export async function specificListing() {
   const listing = await getListing(getSearchParams().id);
+  console.log(listing);
   const main = document.querySelector("main");
   const listingContainer = container({ specificListing });
 

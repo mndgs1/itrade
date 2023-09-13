@@ -3,7 +3,7 @@ import classNames from "classnames";
 export function icon({ className, id, data, type }) {
   const iconClassNames = classNames(className, "");
   const button = document.createElement("button");
-  const buttonClassNames = classNames("p-2");
+  const buttonClassNames = classNames("p-1");
   button.className = buttonClassNames;
 
   const icon = document.createElement("i");

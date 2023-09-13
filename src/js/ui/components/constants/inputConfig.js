@@ -1,4 +1,4 @@
-import { icon } from "../primary";
+import { button, icon } from "../primary";
 
 export const inputConfig = {
   username: {
@@ -52,9 +52,64 @@ export const inputConfig = {
       placeholder: "Search...",
     },
     button: icon({
-      className: "fa-solid fa-magnifying-glass fa-lg",
+      className: "fa-solid fa-magnifying-glass fa-lg ",
       type: "submit",
       id: "searchButton",
+    }),
+  },
+  title: {
+    id: "title",
+    label: "Title",
+    text: "Please create a short title that describes your item",
+    attributes: {
+      type: "text",
+      placeholder: "E.g. Iphone 11S",
+      required: true,
+    },
+  },
+  description: {
+    id: "description",
+    label: "Description",
+    attributes: {
+      type: "text",
+      placeholder: "A detailed description of your item...",
+      required: true,
+    },
+    textarea: true,
+  },
+  endsAt: {
+    id: "auctionEndsAt",
+    label: "Auction ending date",
+    attributes: {
+      type: "datetime-local",
+      required: true,
+    },
+  },
+  tags: {
+    id: "tags",
+    label: "Tags",
+    attributes: {
+      type: "text",
+      placeholder: "Phone",
+    },
+    button: button({
+      id: "addTag",
+      outline: true,
+      text: "Add",
+    }),
+  },
+  media: {
+    id: "media",
+    label: "Media",
+    text: "Please insert a valid link to your media file",
+    attributes: {
+      type: "text",
+      placeholder: "https://www.phones.com/iPhone",
+    },
+    button: button({
+      id: "addMedia",
+      outline: true,
+      text: "Add",
     }),
   },
 };

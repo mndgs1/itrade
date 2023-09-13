@@ -7,13 +7,15 @@ export function image({
   avatar,
   listingsCard,
   listingSpecific,
+  formImage,
   customClasses,
 }) {
   const classes = classNames(customClasses, "", {
     "rounded-full max-h-44": profile,
     "avatar classes": avatar,
-    "custom classes": listingsCard,
+    "w-full h-48 object-cover rounded": listingsCard,
     "custom classessss": listingSpecific,
+    "w-12 h-12 md:w-14 md:h-14 inline-block mr-2 mb-2": formImage,
   });
 
   const image = document.createElement("img");

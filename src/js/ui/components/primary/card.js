@@ -25,9 +25,7 @@ export function card({ img, title, price, bidCount, placeholder, id }) {
   }
   cardWrap.appendChild(card);
 
-  card.appendChild(
-    image({ src: img, className: "w-full h-48 object-cover rounded" })
-  );
+  card.appendChild(image({ src: img, listingsCard: true }));
   card.appendChild(heading({ h2: true, text: title }));
   card.appendChild(message({ secondary: true, text: `${price} kr` }));
   card.appendChild(message({ secondary: true, text: `Bids: ${bidCount}` }));

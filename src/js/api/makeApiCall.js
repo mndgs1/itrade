@@ -3,6 +3,7 @@ import { apiPath } from "./constants";
 export async function makeApiCall(endpoint, options = {}) {
   let data, error;
 
+  console.log(options);
   try {
     const response = await fetch(`${apiPath}${endpoint}`, options);
     const json = await response.json();

@@ -1,25 +1,39 @@
 import classNames from "classnames";
 import { navigation } from "./";
-import { logo, button, modal, icon, form } from "./components/primary";
+import {
+  logo,
+  button,
+  modal,
+  icon,
+  form,
+  container,
+} from "./components/primary";
 import { isLoggedIn } from "../api/auth";
 import { formConfig } from "./components/constants/formConfig";
 
 export function header() {
   const header = document.createElement("header");
+  const body = document.querySelector("body");
+
   const headerClasses = classNames("py-2 shadow relative");
   header.className = headerClasses;
 
-  const body = document.querySelector("body");
-
-  header.appendChild(headerContentWrap());
   body.appendChild(header);
+  body.appendChild(
+    container({
+      id: "modalsContainer",
+      customClasses:
+        "relative w-full px-4 m-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl",
+    })
+  );
+  header.appendChild(headerContentWrap());
 }
 
 // creates content wrap& adds content
 function headerContentWrap() {
   const wrap = document.createElement("div");
   const wrapClasses = classNames(
-    "px-4 m-auto flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl items-center gap-3"
+    "px-4 m-auto relative flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl items-center gap-3"
   );
   wrap.className = wrapClasses;
   wrap.appendChild(logo());
@@ -37,17 +51,18 @@ function headerMenu() {
   menuWrap.className = menuWrapClasses;
 
   if (!isLoggedIn()) {
-    loggedInMenu(menuWrap);
-  } else {
     loggedOutMenu(menuWrap);
+  } else {
+    loggedInMenu(menuWrap);
   }
 
   return menuWrap;
 }
 
-function loggedInMenu(menuWrap) {
+function loggedOutMenu(menuWrap) {
   const loginWrap = document.createElement("div");
   const registerWrap = document.createElement("div");
+  const modalsContainer = document.querySelector("#modalsContainer");
 
   const loginModal = modal({
     element: form(formConfig.login),
@@ -58,7 +73,7 @@ function loggedInMenu(menuWrap) {
   loginWrap.appendChild(
     button({ success: true, rounded: true, text: "Login", data: "loginOpen" })
   );
-  loginWrap.appendChild(loginModal);
+  modalsContainer.appendChild(loginModal);
   menuWrap.appendChild(loginWrap);
 
   const regModal = modal({
@@ -75,18 +90,19 @@ function loggedInMenu(menuWrap) {
       data: "registerOpen",
     })
   );
-  registerWrap.appendChild(regModal);
+  modalsContainer.appendChild(regModal);
 }
 
-function loggedOutMenu(menuWrap) {
+function loggedInMenu(menuWrap) {
   const profile = JSON.parse(localStorage.getItem("profile"));
+  const modalsContainer = document.querySelector("#modalsContainer");
 
   const creditsWrap = document.createElement("div");
   creditsWrap.innerHTML = `<p>Balance:</p><p>${profile.credits} kr</p>`;
   menuWrap.appendChild(creditsWrap);
 
   const userWrap = document.createElement("div");
-  userWrap.setAttribute("data", "openMenu");
+  userWrap.setAttribute("data", "menuOpen");
 
   if (!profile.avatar) {
     userWrap.appendChild(
@@ -99,7 +115,17 @@ function loggedOutMenu(menuWrap) {
     userAvatar.src = profile.avatar;
     userWrap.appendChild(userAvatar);
   }
-  userWrap.appendChild(
+
+  const createListingForm = form(formConfig.createListing);
+
+  modalsContainer.appendChild(
+    modal({
+      element: createListingForm,
+      data: "createAuctionModal",
+      modal: true,
+    })
+  );
+  modalsContainer.appendChild(
     modal({ element: navigation(), data: "menuDialog", dialog: true })
   );
   menuWrap.appendChild(userWrap);
