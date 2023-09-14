@@ -6,10 +6,9 @@ export function createOptions({
   auth = false,
   headers = { contentType: "application/json" },
 }) {
-  const bodyJson = JSON.stringify(body);
   const options = {
     method,
-    body: bodyJson,
+    body,
     headers,
   };
 
