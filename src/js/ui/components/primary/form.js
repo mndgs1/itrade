@@ -39,6 +39,7 @@ export function form({
       });
     }
   }
+  form.appendChild(container({ id: `${id}Errors`, customClasses: "" }));
 
   if (buttons) {
     if (buttonWrap) {

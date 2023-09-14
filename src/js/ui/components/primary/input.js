@@ -12,6 +12,7 @@ export function input({
   button,
   customClasses,
   textarea,
+  labelHidden,
 }) {
   const wrap = document.createElement("div");
   wrap.id = `${id}Wrap`;
@@ -24,7 +25,7 @@ export function input({
   wrap.className = wrapClasses;
 
   if (label) {
-    wrap.appendChild(createLabel(id, label));
+    wrap.appendChild(createLabel(id, label, labelHidden));
   }
   wrap.appendChild(createInput(id, attributes, textarea, button));
 
@@ -35,9 +36,14 @@ export function input({
   return wrap;
 }
 
-function createLabel(id, label) {
+function createLabel(id, label, hiddenLabel) {
   const labelEl = document.createElement("label");
-  const labelClasses = classNames("font-serif block ");
+  let labelClasses;
+  if (hiddenLabel) {
+    labelClasses = classNames("sr-only");
+  } else {
+    labelClasses = classNames("block");
+  }
   labelEl.className = labelClasses;
   labelEl.setAttribute("for", id);
   labelEl.innerText = label;

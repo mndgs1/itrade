@@ -1,5 +1,6 @@
 import { heading, message, image, container, link } from "./";
 import classNames from "classnames";
+import { localDateTime } from "../../../tools";
 
 export function card({ data, listing, bider, seller }) {
   const classes = classNames({
@@ -18,7 +19,7 @@ export function card({ data, listing, bider, seller }) {
       image({
         src: data.img,
         listingsCard: true,
-        alt: `Picture of ${data.title}`,
+        alt: data.title,
       })
     );
     card.appendChild(heading({ h2: true, text: data.title }));
@@ -35,8 +36,8 @@ export function card({ data, listing, bider, seller }) {
       text: data.bidderName,
     });
     const bidAmount = message({ price: true, text: `Bid: ${data.amount}` });
-    const date = new Date(data.created);
-    const dateLocal = date.toLocaleString(date);
+
+    const dateLocal = localDateTime(data.created);
     const dateEl = message({ primary: true, text: dateLocal });
     card.appendChild(biderLink);
     card.appendChild(bidAmount);

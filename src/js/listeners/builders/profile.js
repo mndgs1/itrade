@@ -19,7 +19,10 @@ export async function profileListeners() {
     const username = searchParams.get("name");
 
     const response = await setAvatar(username, avatarInput.value);
-    console.log(response);
+    if (typeof response === "string") {
+      const inputMessage = document.querySelector("#avatarWrap > p");
+      inputMessage.textContent = response;
+    }
   });
 
   const avatarCloseButton = document.querySelector("[data='avatarClose']");

@@ -7,7 +7,6 @@ export const inputConfig = {
     text: "",
     attributes: {
       type: "text",
-      required: true,
       placeholder: "janesmith",
     },
   },
@@ -17,11 +16,10 @@ export const inputConfig = {
     text: "Enter a valid student email address @stud.noroff.no",
     attributes: {
       type: "email",
-      required: true,
       pattern: "^[\\w\\-.]+@(stud\\.)?noroff\\.no$",
       title: "Only Noroff student or teacher emails are valid.",
       autocomplete: "email",
-      placeholder: "janesmith@gmail.com",
+      placeholder: "janesmith@stud.noroff.com",
     },
   },
   password: {
@@ -30,7 +28,6 @@ export const inputConfig = {
     text: "Password must contain at least 8 characters",
     attributes: {
       type: "password",
-      required: true,
       minlength: "8",
       autocomplete: "current-password",
     },
@@ -46,6 +43,7 @@ export const inputConfig = {
   },
   search: {
     search: true,
+    label: "Search Listings",
     id: "search",
     attributes: {
       type: "text",
@@ -56,6 +54,7 @@ export const inputConfig = {
       type: "submit",
       id: "searchButton",
     }),
+    labelHidden: true,
   },
   title: {
     id: "title",
@@ -64,7 +63,6 @@ export const inputConfig = {
     attributes: {
       type: "text",
       placeholder: "E.g. Iphone 11S",
-      required: true,
     },
   },
   description: {
@@ -73,7 +71,6 @@ export const inputConfig = {
     attributes: {
       type: "text",
       placeholder: "A detailed description of your item...",
-      required: true,
     },
     textarea: true,
   },
@@ -82,7 +79,6 @@ export const inputConfig = {
     label: "Ending date",
     attributes: {
       type: "date",
-      required: true,
     },
   },
   time: {
@@ -90,7 +86,6 @@ export const inputConfig = {
     label: "Ending time",
     attributes: {
       type: "time",
-      required: true,
     },
   },
   tags: {

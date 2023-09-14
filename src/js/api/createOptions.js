@@ -4,7 +4,7 @@ export function createOptions({
   method = "GET",
   body,
   auth = false,
-  headers = { contentType: "application/json" },
+  headers = { "Content-Type": "application/json" },
 }) {
   const options = {
     method,
@@ -15,6 +15,10 @@ export function createOptions({
   if (auth) {
     const token = JSON.parse(storage.load("token"));
     options.headers.Authorization = `Bearer ${token}`;
+  }
+
+  if (body) {
+    options.body = JSON.stringify(body);
   }
 
   return options;

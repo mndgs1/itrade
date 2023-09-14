@@ -11,15 +11,8 @@ export async function registerListener(event) {
   const avatar = data.get("avatar");
 
   try {
-    await auth.register(name, email, password, avatar);
+    await auth.register({ name, email, password, avatar });
   } catch {
     return alert("Oops! There was a problem creating your a account");
-  }
-
-  try {
-    await auth.login(email, password);
-    location.reload();
-  } catch {
-    return alert("There was a problem logging into your new account");
   }
 }
