@@ -9,9 +9,10 @@ export function message({
   text,
   tag,
   input,
-  ...rest
+  customClasses,
+  price,
 }) {
-  const headingClasses = classNames(rest.className, "font-serif", {
+  const classes = classNames(customClasses, "font-serif", {
     "border-blue-500 bg-blue-500 text-white": primary,
     "border-gray-900 bg-gray-900 text-white": secondary,
     "2xl": success,
@@ -19,11 +20,16 @@ export function message({
     "string of classes2": danger,
     "": tag,
     "text-xs mt-1 text-gray-600": input,
+    "price classes": price,
   });
+  const messageEl = document.createElement("p");
+  messageEl.className = classes;
 
-  const headingEl = document.createElement("p");
-  headingEl.className = headingClasses;
-  headingEl.innerText = text;
+  messageEl.innerText = text;
 
-  return headingEl;
+  if (price) {
+    messageEl.innerText += ` kr`;
+  }
+
+  return messageEl;
 }

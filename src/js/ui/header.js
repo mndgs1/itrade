@@ -4,9 +4,10 @@ import {
   logo,
   button,
   modal,
-  icon,
   form,
   container,
+  image,
+  icon,
 } from "./components/primary";
 import { isLoggedIn } from "../api/auth";
 import { formConfig } from "./components/constants/formConfig";
@@ -31,7 +32,7 @@ export function header() {
 
 // creates content wrap& adds content
 function headerContentWrap() {
-  const wrap = document.createElement("div");
+  const wrap = container({});
   const wrapClasses = classNames(
     "px-4 m-auto relative flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl items-center gap-3"
   );
@@ -46,9 +47,9 @@ function headerContentWrap() {
 }
 
 function headerMenu() {
-  const menuWrap = document.createElement("div");
-  const menuWrapClasses = classNames("flex flex-row items-center gap-3");
-  menuWrap.className = menuWrapClasses;
+  const menuWrap = container({
+    customClasses: "flex flex-row items-center gap-3",
+  });
 
   if (!isLoggedIn()) {
     loggedOutMenu(menuWrap);
@@ -60,8 +61,8 @@ function headerMenu() {
 }
 
 function loggedOutMenu(menuWrap) {
-  const loginWrap = document.createElement("div");
-  const registerWrap = document.createElement("div");
+  const loginWrap = container({});
+  const registerWrap = container({});
   const modalsContainer = document.querySelector("#modalsContainer");
 
   const loginModal = modal({
@@ -97,24 +98,25 @@ function loggedInMenu(menuWrap) {
   const profile = JSON.parse(localStorage.getItem("profile"));
   const modalsContainer = document.querySelector("#modalsContainer");
 
-  const creditsWrap = document.createElement("div");
+  const creditsWrap = container({});
   creditsWrap.innerHTML = `<p>Balance:</p><p>${profile.credits} kr</p>`;
   menuWrap.appendChild(creditsWrap);
 
-  const userWrap = document.createElement("div");
-  userWrap.setAttribute("data", "menuOpen");
+  const userWrap = container({
+    customClasses: "flex gap-1 cursor-pointer",
+    data: "menuOpen",
+  });
 
-  if (!profile.avatar) {
-    userWrap.appendChild(
-      icon({
-        className: "fa-solid fa-circle-user fa-2xl",
-      })
-    );
-  } else {
-    const userAvatar = document.createElement("img");
-    userAvatar.src = profile.avatar;
-    userWrap.appendChild(userAvatar);
-  }
+  const profileImage = image({
+    src: profile.avatar
+      ? profile.avatar
+      : "../../../assets/Portrait_Placeholder.png",
+    alt: `${profile.name} Avatar`,
+    avatar: true,
+  });
+
+  userWrap.appendChild(profileImage);
+  userWrap.appendChild(icon({ className: "fa-solid fa-bars" }));
 
   const createListingForm = form(formConfig.createListing);
 

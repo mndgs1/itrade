@@ -4,7 +4,6 @@ export function link({ text, path, id, data }) {
   const link = document.createElement("a");
   const linkClasses = classNames("");
   link.className = linkClasses;
-  link.innerText = text;
 
   if (id) {
     link.id = id;
@@ -12,6 +11,10 @@ export function link({ text, path, id, data }) {
 
   if (data) {
     link.setAttribute("data", data);
+  }
+
+  if (text) {
+    link.innerText = text;
   }
   link.href = path;
 

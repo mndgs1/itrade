@@ -20,24 +20,32 @@ export async function profile() {
   const searchParams = url.searchParams;
   const username = searchParams.get("name");
 
-  const profile = await getProfile(username);
+  const profileData = await getProfile(username);
 
-  createProfileHTML(profile);
+  createProfileHTML(profileData);
 }
 
-function createProfileHTML(profile) {
+function createProfileHTML(profileData) {
   const main = document.querySelector("main");
 
-  const profileEl = container({ profile });
+  const profileEl = container({ profile: true });
   const currentUser = JSON.parse(load("profile")).name;
 
   main.appendChild(profileEl);
 
-  profileEl.appendChild(heading({ h1: true, text: `${profile.name}` }));
+  profileEl.appendChild(heading({ h1: true, text: `${profileData.name}` }));
 
   const avatarContainer = container({ customClasses: "flex mb-2" });
-  avatarContainer.appendChild(avatar(profile));
-  if (currentUser === profile.name) {
+  avatarContainer.appendChild(
+    image({
+      src: profileData.avatar
+        ? profileData.avatar
+        : "../../../../assets/Portrait_Placeholder.png",
+      alt: `${profileData.name} Avatar`,
+      profileImg: true,
+    })
+  );
+  if (currentUser === profileData.name) {
     avatarContainer.appendChild(
       button({
         primary: true,
@@ -58,30 +66,12 @@ function createProfileHTML(profile) {
   profileEl.appendChild(avatarContainer);
 
   profileEl.appendChild(
-    message({ primary: true, text: `Name: ${profile.name}` })
+    message({ primary: true, text: `Name: ${profileData.name}` })
   );
   profileEl.appendChild(
-    message({ primary: true, text: `Email: ${profile.email}` })
+    message({ primary: true, text: `Email: ${profileData.email}` })
   );
   profileEl.appendChild(
-    message({ primary: true, text: `Credits: ${profile.credits} kr` })
+    message({ primary: true, text: `Credits: ${profileData.credits} kr` })
   );
-}
-
-function avatar(profile) {
-  let avatar;
-  if (!profile.avatar) {
-    avatar = image({
-      profile: true,
-      src: "../../../../assets/Portrait_Placeholder.png",
-      alt: "Avatar placeholder",
-    });
-  } else {
-    avatar = image({
-      src: profile.avatar,
-      alt: `${profile.name} avatar`,
-    });
-  }
-
-  return avatar;
 }

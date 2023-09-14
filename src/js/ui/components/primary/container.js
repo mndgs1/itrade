@@ -5,7 +5,7 @@ export function container({
   specificListing,
   specificListingMedia,
   bids,
-  listings,
+  listing,
   tags,
   seller,
   profile,
@@ -13,13 +13,14 @@ export function container({
   formButtonsContainer,
   customClasses,
   id,
+  data,
 }) {
   const containerClasses = classNames(customClasses, "", {
     "header-classes": header,
     "specificListing-classes": specificListing,
     "specificListingMedia-classes": specificListingMedia,
     "bids-classes": bids,
-    "2xl": listings,
+    "2xl": listing,
     "string of classes": tags,
     "string of classes2": seller,
     "profile-classes": profile,
@@ -32,6 +33,10 @@ export function container({
 
   if (id) {
     containerEl.id = id;
+  }
+
+  if (data) {
+    containerEl.setAttribute("data", data);
   }
   return containerEl;
 }

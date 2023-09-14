@@ -4,7 +4,7 @@ import { message } from "./message";
 export function image({
   src,
   alt,
-  profile,
+  profileImg,
   avatar,
   listingsCard,
   listingSpecific,
@@ -14,8 +14,8 @@ export function image({
   data,
 }) {
   const classes = classNames(customClasses, "", {
-    "rounded-full max-h-44": profile,
-    "avatar classes": avatar,
+    "rounded-full max-h-60 max-w-60": profileImg,
+    "rounded-full max-h-10 max-w-10": avatar,
     "w-full h-48 object-cover rounded": listingsCard,
     "custom classessss": listingSpecific,
     "w-12 h-12 md:w-14 md:h-14 inline-block mr-2 mb-2": formImage,
