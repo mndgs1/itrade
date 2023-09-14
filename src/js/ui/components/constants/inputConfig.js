@@ -77,11 +77,19 @@ export const inputConfig = {
     },
     textarea: true,
   },
-  endsAt: {
-    id: "auctionEndsAt",
-    label: "Auction ending date",
+  date: {
+    id: "date",
+    label: "Ending date",
     attributes: {
-      type: "datetime-local",
+      type: "date",
+      required: true,
+    },
+  },
+  time: {
+    id: "time",
+    label: "Ending time",
+    attributes: {
+      type: "time",
       required: true,
     },
   },
@@ -93,6 +101,7 @@ export const inputConfig = {
       placeholder: "Phone",
     },
     button: button({
+      type: "button",
       id: "addTag",
       outline: true,
       text: "Add",
@@ -107,6 +116,7 @@ export const inputConfig = {
       placeholder: "https://www.phones.com/iPhone",
     },
     button: button({
+      type: "button",
       id: "addMedia",
       outline: true,
       text: "Add",

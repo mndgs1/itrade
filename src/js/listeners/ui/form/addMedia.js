@@ -7,9 +7,10 @@ export function addMediaListener() {
     const mediaWrap = document.querySelector("#mediaWrap");
 
     if (mediaInput.value) {
-      const imageEl = image({ formImage: true, src: mediaInput.value });
-      imageEl.addEventListener("click", (e) => {
-        e.target.remove();
+      const imageEl = image({
+        formImage: true,
+        src: mediaInput.value,
+        data: "medias",
       });
       mediaWrap.appendChild(imageEl);
       mediaInput.value = "";

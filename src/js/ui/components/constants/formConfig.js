@@ -6,7 +6,7 @@ export const formConfig = {
     headingEl: "Login",
     inputs: [inputConfig.email, inputConfig.password],
     buttons: [
-      { data: "loginClose", secondary: true, text: "Close" },
+      { type: "button", data: "loginClose", secondary: true, text: "Close" },
       { type: "submit", success: true, text: "Login", id: "loginSubmitBtn" },
     ],
     method: "dialog",
@@ -23,7 +23,7 @@ export const formConfig = {
       inputConfig.avatar,
     ],
     buttons: [
-      { data: "registerClose", secondary: true, text: "Close" },
+      { type: "button", data: "registerClose", secondary: true, text: "Close" },
       {
         type: "submit",
         primary: true,
@@ -44,7 +44,7 @@ export const formConfig = {
     headingEl: "Change Avatar",
     inputs: [inputConfig.avatar],
     buttons: [
-      { data: "avatarClose", secondary: true, text: "Close" },
+      { type: "button", data: "avatarClose", secondary: true, text: "Close" },
       {
         type: "submit",
         primary: true,
@@ -62,10 +62,16 @@ export const formConfig = {
       inputConfig.description,
       inputConfig.tags,
       inputConfig.media,
-      inputConfig.endsAt,
+      inputConfig.date,
+      inputConfig.time,
     ],
     buttons: [
-      { data: "createAuctionClose", secondary: true, text: "Close" },
+      {
+        type: "button",
+        data: "createAuctionClose",
+        secondary: true,
+        text: "Close",
+      },
       {
         type: "submit",
         primary: true,

@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { message } from "./message";
 
 export function image({
   src,
@@ -8,7 +9,9 @@ export function image({
   listingsCard,
   listingSpecific,
   formImage,
+  onClickDelete,
   customClasses,
+  data,
 }) {
   const classes = classNames(customClasses, "", {
     "rounded-full max-h-44": profile,
@@ -19,12 +22,20 @@ export function image({
   });
 
   const image = document.createElement("img");
-
   image.className = classes;
   if (src) {
     image.src = src;
   } else {
     image.src = "../../../../../assets/Placeholder image.webp";
+  }
+
+  if (data) {
+    image.setAttribute("data", data);
+  }
+
+  if (onClickDelete) {
+    const imageWrap = document.createElement("div");
+    imageWrap.appendChild(message({ secondary: true, text: "Delete" }));
   }
 
   image.alt = alt;
