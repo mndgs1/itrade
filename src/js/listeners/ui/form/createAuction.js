@@ -1,4 +1,6 @@
 import * as listings from "../../../api/listings";
+import { formErrorsMessages } from "../../../tools/formErrorsMessages";
+// Commented parts separate time & date inputs, creates errors accordingly. Deleted for now due to not being sustainable if errors are changed in the API
 
 export async function createListingListener(event) {
   event.preventDefault();
@@ -7,27 +9,37 @@ export async function createListingListener(event) {
   const data = new FormData(form);
   const title = data.get("title");
   const description = data.get("description");
-  const date = data.get("date");
-  const time = data.get("time");
+  const endsAt = data.get("endsAt");
+  // const date = data.get("date");
+  // const time = data.get("time");
 
-  const endsAt = createDate(date, time);
+  // const endsAt = createDate(date, time);
 
   const tags = createTagsArr();
 
   const media = createMediaArr();
 
   try {
-    await listings.postListing({ title, description, tags, endsAt, media });
+    const { data, error } = await listings.postListing({
+      title,
+      description,
+      tags,
+      endsAt,
+      media,
+    });
+
+    if (data) {
+      console.log("Auction created succesful ?!?!! NEED TO ADD MESSAGE");
+    }
+
+    if (error) {
+      // const splitErrors = createTimeErrors(error);
+
+      formErrorsMessages(event, error);
+    }
   } catch {
     return alert("Oops! There was a problem creating your a account");
   }
-}
-
-function createDate(date, time) {
-  const [year, month, day] = date.split("-").map(Number);
-  const [hour, minute] = time.split(":").map(Number);
-  const endsAt = new Date(year, month - 1, day, hour, minute);
-  return endsAt;
 }
 
 function createTagsArr() {
@@ -52,3 +64,27 @@ function createMediaArr() {
   });
   return media;
 }
+
+// function createTimeErrors(error) {
+//     // Spaghettini idk how else to change it if I want to have time and date separate
+//     const alteredError = error.errors.map((error) => {
+//         error.message = "Ending date is required";
+//         error.path[0] = "date";
+//         return error;
+//     });
+
+//     const timeError = { message: "Ending time is required", path: ["time"] };
+
+//     const newErrorObj = {
+//         errors: [alteredError[0], timeError],
+//     };
+
+//     return newErrorObj;
+// }
+
+// function createDate(date, time) {
+//     const [year, month, day] = date.split("-").map(Number);
+//     const [hour, minute] = time.split(":").map(Number);
+//     const endsAt = new Date(year, month - 1, day, hour, minute);
+//     return endsAt;
+// }

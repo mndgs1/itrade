@@ -17,7 +17,7 @@ export function message({
     "border-gray-900 bg-gray-900 text-white": secondary,
     "2xl": success,
     "string of classes2": danger,
-    "p-2 text-red-500": warning,
+    "m-1 text-sm text-red-500": warning,
     "": tag,
     "text-xs mt-1 text-gray-600": input,
     "price classes": price,

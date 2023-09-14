@@ -1,4 +1,5 @@
 import { setAvatar } from "../../api/profiles";
+import { formErrorsMessages } from "../../tools/formErrorsMessages";
 
 export async function profileListeners() {
   const avatarModal = document.querySelector("[data='avatarModal']");
@@ -18,10 +19,13 @@ export async function profileListeners() {
     const searchParams = url.searchParams;
     const username = searchParams.get("name");
 
-    const response = await setAvatar(username, avatarInput.value);
-    if (typeof response === "string") {
-      const inputMessage = document.querySelector("#avatarWrap > p");
-      inputMessage.textContent = response;
+    const { data, error } = await setAvatar(username, avatarInput.value);
+
+    if (data) {
+      console.log("ADD SUCESS MESSAGE");
+    }
+    if (error) {
+      formErrorsMessages(e, error);
     }
   });
 

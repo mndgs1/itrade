@@ -99,6 +99,7 @@ function loggedInMenu(menuWrap) {
   const modalsContainer = document.querySelector("#modalsContainer");
 
   const creditsWrap = container({});
+
   creditsWrap.innerHTML = `<p>Balance:</p><p>${profile.credits} kr</p>`;
   menuWrap.appendChild(creditsWrap);
 
@@ -116,7 +117,9 @@ function loggedInMenu(menuWrap) {
   });
 
   userWrap.appendChild(profileImage);
-  userWrap.appendChild(icon({ className: "fa-solid fa-bars" }));
+  userWrap.appendChild(
+    icon({ className: "fa-solid fa-bars", srText: "Click to open navigation" })
+  );
 
   const createListingForm = form(formConfig.createListing);
 

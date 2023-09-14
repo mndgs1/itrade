@@ -7,7 +7,10 @@ export function tag({ text, delBtn = false }) {
 
   tagWrap.setAttribute("data", "tags");
   if (delBtn) {
-    const del = icon({ className: "fa-solid fa-x fa-2xs" });
+    const del = icon({
+      className: "fa-solid fa-x fa-2xs",
+      srText: `Click to delete ${text} tag`,
+    });
     del.addEventListener("click", () => {
       tagWrap.remove();
     });

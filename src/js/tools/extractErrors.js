@@ -8,3 +8,5 @@ export function extractError(responseData) {
   }
   return "There was an error processing the request.";
 }
+
+console.log("currently not in use, delete before shipping");

@@ -11,3 +11,4 @@ export * from "./container.js";
 export * from "./loader.js";
 export * from "./form.js";
 export * from "./link.js";
+export * from "./span.js";

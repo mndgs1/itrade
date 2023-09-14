@@ -1,9 +1,9 @@
 import { button, icon } from "../primary";
 
 export const inputConfig = {
-  username: {
-    id: "username",
-    label: "Username",
+  name: {
+    id: "name",
+    label: "Username*",
     text: "",
     attributes: {
       type: "text",
@@ -12,7 +12,7 @@ export const inputConfig = {
   },
   email: {
     id: "email",
-    label: "Email",
+    label: "Email*",
     text: "Enter a valid student email address @stud.noroff.no",
     attributes: {
       type: "email",
@@ -24,7 +24,7 @@ export const inputConfig = {
   },
   password: {
     id: "password",
-    label: "Password",
+    label: "Password*",
     text: "Password must contain at least 8 characters",
     attributes: {
       type: "password",
@@ -53,6 +53,7 @@ export const inputConfig = {
       className: "fa-solid fa-magnifying-glass fa-lg ",
       type: "submit",
       id: "searchButton",
+      srText: "Click to search",
     }),
     labelHidden: true,
   },
@@ -74,16 +75,16 @@ export const inputConfig = {
     },
     textarea: true,
   },
-  date: {
-    id: "date",
-    label: "Ending date",
+  endsAt: {
+    id: "endsAt",
+    label: "Ending date & time*",
     attributes: {
-      type: "date",
+      type: "datetime-local",
     },
   },
   time: {
     id: "time",
-    label: "Ending time",
+    label: "Ending time*",
     attributes: {
       type: "time",
     },

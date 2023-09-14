@@ -17,7 +17,7 @@ export const formConfig = {
     id: "registerForm",
     headingEl: "Register",
     inputs: [
-      inputConfig.username,
+      inputConfig.name,
       inputConfig.email,
       inputConfig.password,
       inputConfig.avatar,
@@ -62,8 +62,7 @@ export const formConfig = {
       inputConfig.description,
       inputConfig.tags,
       inputConfig.media,
-      inputConfig.date,
-      inputConfig.time,
+      inputConfig.endsAt,
     ],
     buttons: [
       {
