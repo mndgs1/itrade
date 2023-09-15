@@ -5,8 +5,8 @@ import {
   image,
   button,
   modal,
-  form,
 } from "../components/primary";
+import { form } from "../components";
 import { clear } from "../../tools";
 import { getProfile } from "../../api/profiles";
 import { load } from "../../storage";

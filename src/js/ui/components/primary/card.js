@@ -1,4 +1,4 @@
-import { heading, message, image, container, link } from "./";
+import { heading, message, image, container, link } from ".";
 import classNames from "classnames";
 import { localDateTime } from "../../../tools";
 

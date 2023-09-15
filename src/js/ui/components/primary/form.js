@@ -1,4 +1,4 @@
-import { heading, container, input, button } from "./";
+import { heading, container, input, button } from ".";
 
 export function form({
   id,

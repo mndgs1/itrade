@@ -1,30 +1,30 @@
 import { isLoggedIn } from "../../api/auth";
-import { loginListener } from "../auth/login";
-import { registerListener } from "../auth/register";
-import { listings } from "../../ui";
+import { listings } from "../../ui/pages";
 import { clear } from "../../tools";
-import * as ui from "../ui";
+import * as listeners from "../index.js";
 import * as auth from "../auth";
-import { addTagListener } from "../ui/form/addTag";
-import { createListingListener } from "../ui/form/createAuction";
-import { addMediaListener } from "../ui/form/addMedia";
+import {
+  addTagListener,
+  createListingListener,
+  addMediaListener,
+} from "../../listeners/ui/form";
 
 export function headerListeners() {
   if (!isLoggedIn()) {
-    ui.modalListeners("login");
+    listeners.modalListeners("login");
 
-    ui.modalListeners("register");
+    listeners.modalListeners("register");
 
     const loginForm = document.querySelector("#loginForm");
-    loginForm.addEventListener("submit", loginListener);
+    loginForm.addEventListener("submit", listeners.loginListener);
 
     const registerForm = document.querySelector("#registerForm");
-    registerForm.addEventListener("submit", registerListener);
+    registerForm.addEventListener("submit", listeners.registerListener);
   }
 
   if (isLoggedIn()) {
-    ui.dialogListeners("menu");
-    ui.modalListeners("createAuction");
+    listeners.dialogListeners("menu");
+    listeners.modalListeners("createAuction");
     addTagListener();
     addMediaListener();
     auth.logout();

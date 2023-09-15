@@ -1,10 +1,7 @@
-import { header } from "../ui/header";
-import { listings } from "../ui/pages/listings";
-import { main } from "../ui/main";
+import { listings, profile } from "../ui/pages";
 import { headerListeners, profileListeners } from "../listeners/builders/";
 import { specificListing } from "../ui/pages/specificListing";
-import { profile } from "../ui";
-import { footer } from "../ui/footer";
+import { footer, header, main } from "../ui/components/secondary";
 
 export default async function router() {
   const path = window.location.pathname;

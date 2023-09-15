@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { logo, message, container } from "./components/primary";
+import { logo, message, container } from "../primary";
 
 export function footer() {
   const header = document.createElement("footer");

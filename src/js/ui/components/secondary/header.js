@@ -1,16 +1,16 @@
 import classNames from "classnames";
-import { navigation } from "./";
 import {
   logo,
   button,
   modal,
-  form,
   container,
   image,
   icon,
-} from "./components/primary";
-import { isLoggedIn } from "../api/auth";
-import { formConfig } from "./components/constants/formConfig";
+  form,
+  navigation,
+} from "../primary";
+import { isLoggedIn } from "../../../api/auth";
+import { formConfig } from "../constants/";
 
 export function header() {
   const header = document.createElement("header");

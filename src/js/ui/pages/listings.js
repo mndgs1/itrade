@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { card, heading } from "../components/primary";
+import { heading } from "../components";
+import { card } from "../components";
 import { getListings } from "../../api/listings";
 import { latestBid } from "../../tools";
 

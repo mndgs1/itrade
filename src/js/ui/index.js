@@ -1,5 +1,2 @@
-export * from "./header";
-export * from "./pages/listings";
-export * from "./main";
-export * from "./navigation";
-export * from "./pages/profile";
+export * from "./components/index";
+export * from "./pages/index";

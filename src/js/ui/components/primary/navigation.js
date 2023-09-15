@@ -1,5 +1,5 @@
-import { link, button } from "./components/primary/";
-import { load } from "../storage";
+import { link, button } from ".";
+import { load } from "../../../storage";
 
 export function navigation() {
   const navigation = document.createElement("nav");

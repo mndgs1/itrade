@@ -1,21 +1,23 @@
-import { message } from "../ui/components/primary/message.js";
+import { message } from "../ui/components/primary/";
 import { clear } from "./clear.js";
 
 export function formErrorsMessages(event, error = {}) {
   const errorContainer = document.querySelector(`#${event.target.id}Errors`);
   clear(errorContainer);
   const errorsArr = error.errors;
-  const errorPaths = [];
-  errorsArr.forEach((error) => {
-    errorContainer.appendChild(
-      message({ warning: true, text: `*${error.path[0]}: ${error.message}` })
-    );
+  let errorPaths = [];
 
-    error.path.forEach((path) => {
-      if (!errorPaths.includes(path)) {
-        errorPaths.push(path);
+  errorsArr.forEach((error) => {
+    const errorMessage = message({ warning: true, text: `${error.message}` });
+
+    errorContainer.appendChild(errorMessage);
+
+    if ("path" in error) {
+      if (error.path.includes("name")) {
+        errorMessage.innerHTML = `Username: ${error.message}`;
       }
-    });
+      createUniqueErrorPathsArr(error, errorPaths);
+    }
   });
 
   console.log(errorPaths);
@@ -23,7 +25,7 @@ export function formErrorsMessages(event, error = {}) {
 }
 
 function highlightErrorInputs(errorPathsArr, form) {
-  if (errorPathsArr) {
+  if (errorPathsArr.length > 0) {
     errorPathsArr.forEach((path) => {
       const errorInput = document.querySelector(`#${form.id} #${path}`);
       errorInput.classList.add("border-red-300", "border-2");
@@ -33,4 +35,12 @@ function highlightErrorInputs(errorPathsArr, form) {
       });
     });
   }
+}
+
+function createUniqueErrorPathsArr(error, errorPaths) {
+  error.path.forEach((path) => {
+    if (!errorPaths.includes(path)) {
+      errorPaths.push(path);
+    }
+  });
 }
