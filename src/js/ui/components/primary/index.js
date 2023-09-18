@@ -13,3 +13,4 @@ export * from "./span.js";
 export * from "./form.js";
 export * from "./card.js";
 export * from "./navigation.js";
+export * from "./table.js";

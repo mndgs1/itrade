@@ -26,6 +26,8 @@ export async function profile() {
 }
 
 function createProfileHTML(profileData) {
+  const { heading, avatar, profile } = createPageElementConfig(profileData);
+
   const main = document.querySelector("main");
 
   const profileEl = container({ profile: true });
@@ -33,45 +35,93 @@ function createProfileHTML(profileData) {
 
   main.appendChild(profileEl);
 
-  profileEl.appendChild(heading({ h1: true, text: `${profileData.name}` }));
+  profileEl.appendChild(heading);
 
-  const avatarContainer = container({ customClasses: "flex mb-2" });
-  avatarContainer.appendChild(
-    image({
-      src: profileData.avatar
-        ? profileData.avatar
-        : "../../../../assets/Portrait_Placeholder.png",
-      alt: `${profileData.name} Avatar`,
-      profileImg: true,
-    })
-  );
+  const avatarContainer = avatar.container;
+  profileEl.appendChild(avatarContainer);
+  avatarContainer.appendChild(avatar.image);
+
   if (currentUser === profileData.name) {
-    avatarContainer.appendChild(
-      button({
-        primary: true,
-        text: "Change",
-        data: "avatarOpen",
-      })
-    );
-
-    avatarContainer.appendChild(
-      modal({
-        element: form(formConfig.avatar),
-        data: "avatarModal",
-        modal: true,
-      })
-    );
+    avatarContainer.appendChild(avatar.button);
+    avatarContainer.appendChild(avatar.form);
   }
 
   profileEl.appendChild(avatarContainer);
 
-  profileEl.appendChild(
-    message({ primary: true, text: `Name: ${profileData.name}` })
-  );
-  profileEl.appendChild(
-    message({ primary: true, text: `Email: ${profileData.email}` })
-  );
-  profileEl.appendChild(
-    message({ primary: true, text: `Credits: ${profileData.credits} kr` })
-  );
+  const profileDataContainer = container({
+    customClasses: "grid grid-cols-[auto,1fr] gap-2",
+  });
+  for (const key in profile) {
+    const el = profile[key];
+    const alteredKey = key.charAt(0).toUpperCase() + key.slice(1) + ":";
+
+    profileDataContainer.appendChild(
+      message({
+        primary: true,
+        large: true,
+        text: alteredKey,
+        customClasses: "max-w-fit",
+      })
+    );
+    profileDataContainer.appendChild(el);
+  }
+
+  profileEl.appendChild(profileDataContainer);
+}
+
+// Returns elements object when called
+function createPageElementConfig(profileData) {
+  return {
+    heading: heading({ h1: true, text: `${profileData.name}` }),
+    avatar: {
+      container: container({
+        customClasses: "mb-2 relative inline-block",
+      }),
+      image: image({
+        src: profileData.avatar
+          ? profileData.avatar
+          : "../../../../assets/Portrait_Placeholder.png",
+        alt: `${profileData.name} Avatar`,
+        profileImg: true,
+      }),
+      button: button({
+        primary: true,
+        text: "Change",
+        data: "avatarOpen",
+        customClasses: "absolute bottom-0",
+      }),
+      form: modal({
+        element: form(formConfig.avatar),
+        data: "avatarModal",
+        modal: true,
+      }),
+    },
+    profile: {
+      name: message({
+        primary: true,
+        large: true,
+        text: profileData.name,
+      }),
+      email: message({
+        primary: true,
+        text: profileData.email,
+        large: true,
+      }),
+      credits: message({
+        primary: true,
+        text: `${profileData.credits} kr`,
+        large: true,
+      }),
+      Auctions: message({
+        primary: true,
+        text: profileData._count.listings,
+        large: true,
+      }),
+      Won: message({
+        primary: true,
+        text: profileData.wins.length,
+        large: true,
+      }),
+    },
+  };
 }

@@ -11,6 +11,7 @@ export function message({
   input,
   customClasses,
   price,
+  large,
 }) {
   const classes = classNames(customClasses, "", {
     "border-blue-500 bg-blue-500 text-white": primary,
@@ -21,6 +22,7 @@ export function message({
     "": tag,
     "text-xs mt-1 text-gray-600": input,
     "price classes": price,
+    "text-lg md:text-xl": large,
   });
   const messageEl = document.createElement("p");
   messageEl.className = classes;

@@ -7,7 +7,7 @@ export async function registerListener(event) {
   const form = event.target;
   const data = new FormData(form);
   const email = data.get("email");
-  const name = data.get("username");
+  const name = data.get("name");
   const password = data.get("password");
   const avatar = data.get("avatar");
 

@@ -14,8 +14,8 @@ export function heading({ h1, h2, h3, h4, text, customClasses }) {
   }
   const headingClasses = classNames(customClasses, "", {
     "mt-4 mb-2 text-4xl md:text-5xl md:mt-6 md:mb-4": h1,
-    "mt-2 mb-2 text-lg md:text-xl": h2,
-    "string of classes": h3,
+    "mt-3 mb-2 text-3xl md:text-4xl md:mt-5 md:mb-4": h2,
+    "mt-2 mb-1 text-xl md:text-2xl md:mt-4 md:mb-2": h3,
     "string of classes2": h4,
   });
 

@@ -98,11 +98,6 @@ function loggedInMenu(menuWrap) {
   const profile = JSON.parse(localStorage.getItem("profile"));
   const modalsContainer = document.querySelector("#modalsContainer");
 
-  const creditsWrap = container({});
-
-  creditsWrap.innerHTML = `<p>Balance:</p><p>${profile.credits} kr</p>`;
-  menuWrap.appendChild(creditsWrap);
-
   const userWrap = container({
     customClasses: "flex gap-1 cursor-pointer",
     data: "menuOpen",

@@ -13,6 +13,7 @@ export function button({
   danger,
   outline,
   loading,
+  clear,
   customClasses,
 }) {
   const classes = classNames(
@@ -31,6 +32,7 @@ export function button({
       "text-green-500": outline && success,
       "text-yellow-400": outline && warning,
       "text-red-500": outline && danger,
+      "border-transparent bg-transparent": clear,
     }
   );
 

@@ -99,7 +99,7 @@ export const inputConfig = {
     button: button({
       type: "button",
       id: "addTag",
-      outline: true,
+      clear: true,
       text: "Add",
     }),
   },
@@ -114,8 +114,16 @@ export const inputConfig = {
     button: button({
       type: "button",
       id: "addMedia",
-      outline: true,
+      clear: true,
       text: "Add",
     }),
+  },
+  bid: {
+    id: "bid",
+    label: "Make a bid",
+    attributes: {
+      type: "text",
+      oninput: "this.value = this.value.replace(/[^0-9]/g, '')",
+    },
   },
 };

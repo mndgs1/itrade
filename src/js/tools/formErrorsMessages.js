@@ -8,14 +8,14 @@ export function formErrorsMessages(event, error = {}) {
   let errorPaths = [];
 
   errorsArr.forEach((error) => {
-    const errorMessage = message({ warning: true, text: `${error.message}` });
+    const errorMessage = message({
+      warning: true,
+      text: `${error.message}`,
+    });
 
     errorContainer.appendChild(errorMessage);
 
     if ("path" in error) {
-      if (error.path.includes("name")) {
-        errorMessage.innerHTML = `Username: ${error.message}`;
-      }
       createUniqueErrorPathsArr(error, errorPaths);
     }
   });
