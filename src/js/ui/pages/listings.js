@@ -7,6 +7,7 @@ import { latestBid } from "../../tools";
 export async function listings({ search }) {
   const listings = await getListings({ tag: search });
 
+  console.log(listings);
   const main = document.querySelector("main");
   const headingEl = heading({ h1: true, text: "Listings" });
 
@@ -46,6 +47,8 @@ export function createListingCard(listing, container) {
         price: lastBid,
         bidCount: listing.bids.length,
         id: listing.id,
+        endsAt: listing.endsAt,
+        tags: listing.tags,
       },
       listing: true,
     })

@@ -1,69 +1,60 @@
-import classNames from "classnames";
 import {
   logo,
   button,
   modal,
   container,
   image,
-  icon,
   form,
   navigation,
 } from "../primary";
 import { isLoggedIn } from "../../../api/auth";
 import { formConfig } from "../constants/";
+import { createElement } from "../../../tools";
 
 export function header() {
-  const header = document.createElement("header");
-  const body = document.querySelector("body");
-
-  const headerClasses = classNames("py-2 shadow relative");
-  header.className = headerClasses;
-
-  body.appendChild(header);
-  body.appendChild(
-    container({
+  const modalsContainer = createElement({
+    el: "div",
+    classes:
+      "relative w-full px-4 m-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl",
+    attributes: {
       id: "modalsContainer",
-      customClasses:
-        "relative w-full px-4 m-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl",
-    })
-  );
-  header.appendChild(headerContentWrap());
+    },
+  });
+
+  const headerContentWrap = createElement({
+    el: "div",
+    classes:
+      "px-4 m-auto relative flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl items-center gap-3",
+    children: [logo(), form(formConfig.search), headerMenu(modalsContainer)],
+  });
+
+  const header = createElement({
+    el: "header",
+    classes: "py-2 shadow relative",
+    children: [headerContentWrap, modalsContainer],
+  });
+
+  const body = document.querySelector("body");
+  body.appendChild(header);
 }
 
-// creates content wrap& adds content
-function headerContentWrap() {
-  const wrap = container({});
-  const wrapClasses = classNames(
-    "px-4 m-auto relative flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl items-center gap-3"
-  );
-  wrap.className = wrapClasses;
-  wrap.appendChild(logo());
-
-  wrap.appendChild(form(formConfig.search));
-
-  wrap.appendChild(headerMenu());
-
-  return wrap;
-}
-
-function headerMenu() {
+function headerMenu(modalsContainer) {
   const menuWrap = container({
     customClasses: "flex flex-row items-center gap-3",
   });
 
   if (!isLoggedIn()) {
-    loggedOutMenu(menuWrap);
+    loggedOutMenu(menuWrap, modalsContainer);
   } else {
-    loggedInMenu(menuWrap);
+    loggedInMenu(menuWrap, modalsContainer);
   }
 
   return menuWrap;
 }
 
-function loggedOutMenu(menuWrap) {
+function loggedOutMenu(menuWrap, modalsContainer) {
   const loginWrap = container({});
   const registerWrap = container({});
-  const modalsContainer = document.querySelector("#modalsContainer");
 
   const loginModal = modal({
     element: form(formConfig.login),
@@ -72,7 +63,12 @@ function loggedOutMenu(menuWrap) {
   });
 
   loginWrap.appendChild(
-    button({ success: true, rounded: true, text: "Login", data: "loginOpen" })
+    button({
+      success: true,
+      rounded: true,
+      text: "Login",
+      data: "loginOpen",
+    })
   );
   modalsContainer.appendChild(loginModal);
   menuWrap.appendChild(loginWrap);
@@ -94,12 +90,12 @@ function loggedOutMenu(menuWrap) {
   modalsContainer.appendChild(regModal);
 }
 
-function loggedInMenu(menuWrap) {
+function loggedInMenu(menuWrap, modalsContainer) {
   const profile = JSON.parse(localStorage.getItem("profile"));
-  const modalsContainer = document.querySelector("#modalsContainer");
 
-  const userWrap = container({
+  const userWrap = button({
     customClasses: "flex gap-1 cursor-pointer",
+    wrap: true,
     data: "menuOpen",
   });
 
@@ -112,9 +108,6 @@ function loggedInMenu(menuWrap) {
   });
 
   userWrap.appendChild(profileImage);
-  userWrap.appendChild(
-    icon({ className: "fa-solid fa-bars", srText: "Click to open navigation" })
-  );
 
   const createListingForm = form(formConfig.createListing);
 

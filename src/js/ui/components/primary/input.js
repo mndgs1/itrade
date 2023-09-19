@@ -17,7 +17,7 @@ export function input({
   const wrap = document.createElement("div");
   wrap.id = `${id}Wrap`;
   const wrapClasses = classNames(customClasses, "", {
-    "max-w-sm": short,
+    "w-16": short,
     "sm:w-4/12": long,
     "relative shadow-sm sm:w-72": search,
   });

@@ -14,3 +14,5 @@ export * from "./form.js";
 export * from "./card.js";
 export * from "./navigation.js";
 export * from "./table.js";
+export * from "./tag.js";
+export * from "./galery.js";

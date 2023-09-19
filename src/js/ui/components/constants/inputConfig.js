@@ -1,4 +1,4 @@
-import { button, icon } from "../primary";
+import { button, icon, message } from "../primary";
 
 export const inputConfig = {
   name: {
@@ -120,10 +120,14 @@ export const inputConfig = {
   },
   bid: {
     id: "bid",
-    label: "Make a bid",
+    label: "Credits",
+    short: true,
     attributes: {
       type: "text",
       oninput: "this.value = this.value.replace(/[^0-9]/g, '')",
     },
+    customClasses: "inline-block mr-1",
+    button: message({ primary: true, text: "kr", customClasses: "mr-2" }),
+    labelHidden: true,
   },
 };

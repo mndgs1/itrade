@@ -6,8 +6,18 @@ export const formConfig = {
     headingEl: "Login",
     inputs: [inputConfig.email, inputConfig.password],
     buttons: [
-      { type: "button", data: "loginClose", secondary: true, text: "Close" },
-      { type: "submit", success: true, text: "Login", id: "loginSubmitBtn" },
+      {
+        type: "button",
+        data: "loginClose",
+        secondary: true,
+        text: "Close",
+      },
+      {
+        type: "submit",
+        success: true,
+        text: "Login",
+        id: "loginSubmitBtn",
+      },
     ],
     method: "dialog",
     formWrap: true,
@@ -23,7 +33,12 @@ export const formConfig = {
       inputConfig.avatar,
     ],
     buttons: [
-      { type: "button", data: "registerClose", secondary: true, text: "Close" },
+      {
+        type: "button",
+        data: "registerClose",
+        secondary: true,
+        text: "Close",
+      },
       {
         type: "submit",
         primary: true,
@@ -44,7 +59,12 @@ export const formConfig = {
     headingEl: "Change Avatar",
     inputs: [inputConfig.avatar],
     buttons: [
-      { type: "button", data: "avatarClose", secondary: true, text: "Close" },
+      {
+        type: "button",
+        data: "avatarClose",
+        secondary: true,
+        text: "Close",
+      },
       {
         type: "submit",
         primary: true,
@@ -80,5 +100,17 @@ export const formConfig = {
     ],
     buttonWrap: true,
     formWrap: true,
+  },
+  bid: {
+    id: "bidForm",
+    inputs: [inputConfig.bid],
+    buttons: [
+      {
+        id: "bidSubmit",
+        primary: true,
+        text: "Bid",
+        customClasses: "inline-flex",
+      },
+    ],
   },
 };

@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { heading, container, input, button } from ".";
 
 export function form({
@@ -8,9 +9,13 @@ export function form({
   method,
   formWrap,
   buttonWrap,
+  customClasses,
 }) {
   const form = document.createElement("form");
 
+  const classes = classNames(customClasses);
+
+  form.className = classes;
   if (id) {
     form.id = id;
   }
@@ -39,7 +44,6 @@ export function form({
       });
     }
   }
-  form.appendChild(container({ id: `${id}Errors`, customClasses: "" }));
 
   if (buttons) {
     if (buttonWrap) {
@@ -54,6 +58,7 @@ export function form({
       });
     }
   }
+  form.appendChild(container({ id: `${id}Errors`, customClasses: "" }));
 
   return form;
 }

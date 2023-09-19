@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-export function link({ text, path, id, data }) {
+export function link({ text, path, id, data, standard }) {
   const link = document.createElement("a");
   const linkClasses = classNames("");
   link.className = linkClasses;
@@ -18,5 +18,8 @@ export function link({ text, path, id, data }) {
   }
   link.href = path;
 
+  if (standard) {
+    link.className += "underline italic underline-offset-2";
+  }
   return link;
 }

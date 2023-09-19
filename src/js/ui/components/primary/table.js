@@ -18,7 +18,7 @@ export function table({ headers, data, classes }) {
 
   const tHead = createElement({
     el: "thead",
-    classes: "border-blue-500 bg-blue-500 text-white text-left",
+    classes: "text-left border-b border-zinc-400",
     children: [tHeadRow],
   });
 

@@ -33,8 +33,6 @@ export async function createListingListener(event) {
     }
 
     if (error) {
-      // const splitErrors = createTimeErrors(error);
-
       formErrorsMessages(event, error);
     }
   } catch {
@@ -43,7 +41,7 @@ export async function createListingListener(event) {
 }
 
 function createTagsArr() {
-  const tagsEls = document.querySelectorAll("[data='tags']");
+  const tagsEls = document.querySelectorAll("#createAuctionForm [data-tags]");
   let tags = [];
   tagsEls.forEach((tagEl) => {
     const tag = tagEl.querySelector("p");
