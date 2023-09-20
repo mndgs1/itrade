@@ -1,18 +1,10 @@
-import { apiPath } from "../constants";
-import { headers } from "../headers";
+import { makeApiCall, createOptions } from "../";
 
-export async function register(name, email, password, avatar) {
-  const response = await fetch(`${apiPath}/auction/auth/register`, {
-    method: "post",
-    body: JSON.stringify({ name, email, password, avatar }),
-    headers: headers("application/json"),
-  });
+export async function register(bodyData = {}) {
+  const endpoint = "/auction/auth/register";
 
-  const json = await response.json();
+  const options = createOptions({ method: "POST", body: bodyData });
+  const { data, error } = await makeApiCall(endpoint, options);
 
-  if (response.ok) {
-    return json;
-  } else {
-    throw new Error(response.statusText);
-  }
+  return { data, error };
 }

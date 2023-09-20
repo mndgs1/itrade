@@ -1,7 +1,7 @@
 import { makeApiCall, createOptions } from "..";
 
 export async function getProfile(username) {
-  const endpoint = `/auction/profiles/${username}`;
+  const endpoint = `/auction/profiles/${username}?_listings=true`;
 
   const options = createOptions({ auth: true });
 

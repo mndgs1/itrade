@@ -9,21 +9,28 @@ export function message({
   text,
   tag,
   input,
-  ...rest
+  customClasses,
+  price,
+  large,
 }) {
-  const headingClasses = classNames(rest.className, "font-serif", {
-    "border-blue-500 bg-blue-500 text-white": primary,
-    "border-gray-900 bg-gray-900 text-white": secondary,
-    "2xl": success,
-    "string of classes": warning,
+  const classes = classNames(customClasses, "", {
+    "text-zinq-900": primary,
+    "text-gray-500": secondary,
+    "text-xl ": success,
     "string of classes2": danger,
+    "text-sm text-red-500": warning,
     "": tag,
-    "text-xs mt-1 text-gray-600": input,
+    "text-xs text-gray-600": input,
+    "text-xl md:text-xxl": large,
   });
+  const messageEl = document.createElement("p");
+  messageEl.className = classes;
 
-  const headingEl = document.createElement("p");
-  headingEl.className = headingClasses;
-  headingEl.innerText = text;
+  messageEl.innerText = text;
 
-  return headingEl;
+  if (price) {
+    messageEl.innerText += ` kr`;
+  }
+
+  return messageEl;
 }

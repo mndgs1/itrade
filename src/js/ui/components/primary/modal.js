@@ -1,10 +1,10 @@
 import classNames from "classnames";
 
-export function modal({ element, data, modal, dialog, ...rest }) {
+export function modal({ element, data, modal, dialog, customClasses }) {
   const modalEl = document.createElement("dialog");
-  const modalClasses = classNames(rest.className, "rounded", {
-    "p-10": modal,
-    "": dialog,
+  const modalClasses = classNames(customClasses, "rounded", {
+    "p-10 max-w-lg backdrop:backdrop-blur-sm": modal,
+    "box-content p-4 mr-4 drop-shadow-md": dialog,
   });
 
   modalEl.className = modalClasses;

@@ -1,11 +1,11 @@
 import classNames from "classnames";
+import { message } from "./message";
 
 export function button({
   id,
   data,
   type,
   text,
-  listeners,
   primary,
   secondary,
   success,
@@ -13,11 +13,13 @@ export function button({
   danger,
   outline,
   loading,
+  clear,
   customClasses,
+  wrap,
 }) {
   const classes = classNames(
     customClasses,
-    "flex items-center px-3 py-1.5 border h-8 rounded",
+    "flex items-center px-4 py-3 border h-8 rounded hover:drop-shadow",
     {
       "opacity-80": loading,
       "border-blue-500 bg-blue-500 text-white": primary,
@@ -31,17 +33,18 @@ export function button({
       "text-green-500": outline && success,
       "text-yellow-400": outline && warning,
       "text-red-500": outline && danger,
+      "border-transparent bg-transparent hover:bg-gray-50 mr-1": clear,
     }
   );
 
   const button = document.createElement("button");
 
-  for (const type in listeners) {
-    button.addEventListener(type, listeners[type]);
+  if (text) {
+    button.innerText = text;
   }
-
-  button.innerText = text;
-  button.disabled = loading;
+  if (loading) {
+    button.disabled = loading;
+  }
   button.className = classes;
 
   if (id) {
@@ -52,6 +55,13 @@ export function button({
   }
   if (data) {
     button.setAttribute("data", data);
+  }
+
+  if (wrap) {
+    button.classList.remove(...button.classList);
+    button.appendChild(
+      message({ text: "Open Navigation", customClasses: "sr-only" })
+    );
   }
 
   return button;

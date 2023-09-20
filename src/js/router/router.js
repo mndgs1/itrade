@@ -1,12 +1,13 @@
-import { header } from "../ui/header";
-import { listings } from "../ui/pages/listings";
-import { main } from "../ui/main";
-import { headerListeners } from "../listeners/ui/headerListeners";
+import { listings, profile } from "../ui/pages";
+import {
+  headerListeners,
+  profileListeners,
+  listingSpecificListeners,
+} from "../listeners/builders/";
 import { specificListing } from "../ui/pages/specificListing";
-import { profile } from "../ui";
-import { footer } from "../ui/footer";
+import { footer, header, main } from "../ui/components/secondary";
 
-export default function router() {
+export default async function router() {
   const path = window.location.pathname;
 
   switch (path) {
@@ -23,14 +24,16 @@ export default function router() {
       header();
       main();
       headerListeners();
-      specificListing();
+      await specificListing();
+      listingSpecificListeners();
       footer();
       break;
     case "/profile":
       header();
       main();
       headerListeners();
-      profile();
+      await profile();
+      profileListeners();
       footer();
   }
 }

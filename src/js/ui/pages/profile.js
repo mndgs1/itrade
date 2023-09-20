@@ -4,66 +4,121 @@ import {
   heading,
   image,
   button,
+  modal,
 } from "../components/primary";
-import { clear } from "../../tools";
+import { form } from "../components";
+import { clear, getSearchParams } from "../../tools";
 import { getProfile } from "../../api/profiles";
 import { load } from "../../storage";
+import { formConfig } from "../components/constants/formConfig";
 
 export async function profile() {
-  const main = document.querySelector("main");
-  clear(main);
+  clear("main");
 
-  const url = new URL(window.location.href);
+  const searchParams = getSearchParams();
 
-  const searchParams = url.searchParams;
-  const username = searchParams.get("name");
+  const profileData = await getProfile(searchParams.name);
 
-  const profile = await getProfile(username);
-
-  const profileEl = container({ profile });
-  main.appendChild(profileEl);
-
-  profileEl.appendChild(heading({ h1: true, text: `${profile.name}` }));
-  profileEl.appendChild(avatar(profile));
-
-  const currentUser = JSON.parse(load("profile")).name;
-
-  if (currentUser === profile.name) {
-    profileEl.appendChild(
-      button({
-        primary: true,
-        text: "Change",
-        customClasses: "",
-        data: "openAvatarModal",
-      })
-    );
-  }
-
-  profileEl.appendChild(
-    message({ primary: true, text: `Name: ${profile.name}` })
-  );
-  profileEl.appendChild(
-    message({ primary: true, text: `Email: ${profile.email}` })
-  );
-  profileEl.appendChild(
-    message({ primary: true, text: `Credits: ${profile.credits} kr` })
-  );
+  createProfileHTML(profileData);
 }
 
-function avatar(profile) {
-  let avatar;
-  if (!profile.avatar) {
-    avatar = image({
-      profile: true,
-      src: "../../../../assets/Portrait_Placeholder.png",
-      alt: "Profile picture",
-    });
-  } else {
-    avatar = image({
-      src: profile.avatar,
-      alt: `${profile.name} avatar`,
-    });
+function createProfileHTML(profileData) {
+  const { heading, avatar, profile } = createPageElementConfig(profileData);
+
+  const main = document.querySelector("main");
+
+  const profileEl = container({ profile: true });
+  const currentUser = JSON.parse(load("profile")).name;
+
+  main.appendChild(profileEl);
+
+  profileEl.appendChild(heading);
+
+  const avatarContainer = avatar.container;
+  profileEl.appendChild(avatarContainer);
+  avatarContainer.appendChild(avatar.image);
+
+  if (currentUser === profileData.name) {
+    avatarContainer.appendChild(avatar.button);
+    avatarContainer.appendChild(avatar.form);
   }
 
-  return avatar;
+  profileEl.appendChild(avatarContainer);
+
+  const profileDataContainer = container({
+    customClasses: "grid grid-cols-[auto,1fr] gap-2",
+  });
+  for (const key in profile) {
+    const el = profile[key];
+    const alteredKey = key.charAt(0).toUpperCase() + key.slice(1) + ":";
+
+    profileDataContainer.appendChild(
+      message({
+        primary: true,
+        large: true,
+        text: alteredKey,
+        customClasses: "max-w-fit",
+      })
+    );
+    profileDataContainer.appendChild(el);
+  }
+
+  profileEl.appendChild(profileDataContainer);
+}
+
+// Returns elements object when called
+function createPageElementConfig(profileData) {
+  return {
+    heading: heading({ h1: true, text: `${profileData.name}` }),
+    avatar: {
+      container: container({
+        customClasses: "mb-2 relative inline-block",
+      }),
+      image: image({
+        src: profileData.avatar
+          ? profileData.avatar
+          : "../../../../assets/Portrait_Placeholder.png",
+        alt: `${profileData.name} Avatar`,
+        profileImg: true,
+      }),
+      button: button({
+        primary: true,
+        text: "Change",
+        data: "avatarOpen",
+        customClasses: "absolute bottom-0",
+      }),
+      form: modal({
+        element: form(formConfig.avatar),
+        data: "avatarModal",
+        modal: true,
+      }),
+    },
+    profile: {
+      name: message({
+        primary: true,
+        large: true,
+        text: profileData.name,
+      }),
+      email: message({
+        primary: true,
+        text: profileData.email,
+        large: true,
+      }),
+      credits: message({
+        primary: true,
+        text: `${profileData.credits} kr`,
+        large: true,
+      }),
+      Auctions: message({
+        primary: true,
+        text: profileData._count.listings,
+        large: true,
+      }),
+      Won: message({
+        primary: true,
+        text: profileData.wins.length,
+        large: true,
+      }),
+    },
+  };
 }

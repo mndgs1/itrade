@@ -1,35 +1,61 @@
-import { heading, message, image } from "./";
+import { message, image, link, tag } from ".";
+import classNames from "classnames";
+import { createElement, localDateTime } from "../../../tools";
 
-export function card({ img, title, price, bidCount, placeholder, id }) {
-  const cardWrap = document.createElement("a");
-  cardWrap.href = `listings/listing?id=${id}`;
-  const card = document.createElement("div");
+export function card({ data, listing, seller }) {
+  const classes = classNames({
+    "hover:opacity-75": listing,
+    "seller classes": seller,
+  });
 
-  if (placeholder) {
-    card.innerHTML = `<div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-      <div class="animate-pulse flex space-x-4">
-      <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-      <div class="flex-1 space-y-6 py-1">
-      <div class="h-2 bg-slate-700 rounded"></div>
-      <div class="space-y-3">
-      <div class="grid grid-cols-3 gap-4">
-      <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-      <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-      </div>
-      <div class="h-2 bg-slate-700 rounded"></div>
-      </div>
-      </div>
-      </div>
-      </div>`;
+  if (listing) {
+    const cardWrap = link({ path: `listings/listing?id=${data.id}` });
+
+    const endsAt = localDateTime(data.endsAt);
+
+    const namePriceWrap = createElement({
+      el: "div",
+      classes: "flex justify-between",
+      children: [
+        message({ primary: true, large: true, text: data.title }),
+        message({
+          primary: true,
+          large: true,
+          text: `${data.price} kr`,
+        }),
+      ],
+    });
+
+    let tagEls = [];
+    if (data.tags.length > 0) {
+      data.tags.forEach((item) => {
+        if (item) {
+          tagEls.push(tag({ text: item }));
+        }
+      });
+    }
+
+    const card = createElement({
+      el: "div",
+      classes: classes,
+      children: [
+        image({
+          src: data.img,
+          listingsCard: true,
+          alt: data.title,
+        }),
+        namePriceWrap,
+        tagEls,
+        message({ secondary: true, text: `Bids: ${data.bidCount}` }),
+        message({
+          secondary: true,
+          text: `Ends at: ${endsAt}`,
+        }),
+      ],
+    });
+
+    cardWrap.appendChild(card);
+
     return cardWrap;
   }
-  cardWrap.appendChild(card);
-
-  card.appendChild(
-    image({ src: img, className: "w-full h-48 object-cover rounded" })
-  );
-  card.appendChild(heading({ h2: true, text: title }));
-  card.appendChild(message({ secondary: true, text: `${price} kr` }));
-  card.appendChild(message({ secondary: true, text: `Bids: ${bidCount}` }));
-  return cardWrap;
 }
