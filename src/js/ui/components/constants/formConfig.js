@@ -14,7 +14,7 @@ export const formConfig = {
       },
       {
         type: "submit",
-        success: true,
+        primary: true,
         text: "Login",
         id: "loginSubmitBtn",
       },

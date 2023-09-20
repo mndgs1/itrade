@@ -23,7 +23,7 @@ export function container({
     "2xl": listing,
     "string of classes": tags,
     "string of classes2": seller,
-    "profile classes": profile,
+    "md:flex md:gap-3": profile,
     "border-b border-gray-900/10 pb-12 space-y-4 mt-10": formInputContainer,
     "mt-6 flex items-center justify-end gap-x-6": formButtonsContainer,
   });

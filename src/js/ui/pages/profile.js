@@ -5,9 +5,11 @@ import {
   image,
   button,
   modal,
+  form,
+  table,
+  link,
 } from "../components/primary";
-import { form } from "../components";
-import { clear, getSearchParams } from "../../tools";
+import { clear, getSearchParams, localDateTime } from "../../tools";
 import { getProfile } from "../../api/profiles";
 import { load } from "../../storage";
 import { formConfig } from "../components/constants/formConfig";
@@ -19,6 +21,7 @@ export async function profile() {
 
   const profileData = await getProfile(searchParams.name);
 
+  console.log(profileData);
   createProfileHTML(profileData);
 }
 
@@ -30,9 +33,8 @@ function createProfileHTML(profileData) {
   const profileEl = container({ profile: true });
   const currentUser = JSON.parse(load("profile")).name;
 
+  main.appendChild(heading);
   main.appendChild(profileEl);
-
-  profileEl.appendChild(heading);
 
   const avatarContainer = avatar.container;
   profileEl.appendChild(avatarContainer);
@@ -46,7 +48,7 @@ function createProfileHTML(profileData) {
   profileEl.appendChild(avatarContainer);
 
   const profileDataContainer = container({
-    customClasses: "grid grid-cols-[auto,1fr] gap-2",
+    customClasses: "grid grid-cols-[auto,1fr] gap-1",
   });
   for (const key in profile) {
     const el = profile[key];
@@ -64,6 +66,32 @@ function createProfileHTML(profileData) {
   }
 
   profileEl.appendChild(profileDataContainer);
+  addListingsTable(profileData.listings, main);
+}
+
+function addListingsTable(listings, listingContainer) {
+  const modifiedListings = listings.map((listing) => {
+    const createdLocal = localDateTime(listing.created);
+    const endsLocal = localDateTime(listing.created);
+
+    return {
+      Title: link({
+        text: listing.title ? listing.title : "No Title",
+        path: `listings/listing?id=${listing.id}`,
+        standard: true,
+      }),
+      Description: listing.description,
+      Created: createdLocal,
+      Ends: endsLocal,
+    };
+  });
+
+  listingContainer.appendChild(
+    table({
+      headers: ["Title", "Description", "Created", "Ends"],
+      data: modifiedListings,
+    })
+  );
 }
 
 // Returns elements object when called

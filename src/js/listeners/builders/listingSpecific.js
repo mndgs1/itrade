@@ -1,7 +1,9 @@
 import { bidSubmit } from "../ui";
+import { isLoggedIn } from "../../api/auth";
 
 export function listingSpecificListeners() {
-  const bidForm = document.querySelector("#bidForm");
-
-  bidForm.addEventListener("submit", bidSubmit);
+  if (isLoggedIn()) {
+    const bidForm = document.querySelector("#bidForm");
+    bidForm.addEventListener("submit", bidSubmit);
+  }
 }

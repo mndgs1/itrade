@@ -22,8 +22,8 @@ export function button({
     "flex items-center px-4 py-3 border h-8 rounded hover:drop-shadow",
     {
       "opacity-80": loading,
-      "border-blue-500 bg-blue-500 text-white": primary,
-      "border-gray-500 bg-gray-500 text-white": secondary,
+      "border-customOrange bg-customOrange text-customGrey": primary,
+      "border-customGray bg-customGray text-white": secondary,
       "border-green-500 bg-green-500 text-white": success,
       "border-yellow-400 bg-yellow-400 text-white": warning,
       "border-red-500 bg-red-500 text-white": danger,
