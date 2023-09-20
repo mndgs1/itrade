@@ -39,7 +39,19 @@ export function image({
   });
 
   if (onClickDelete) {
-    imgWrap.appendChild(message({ secondary: true, text: "Delete" }));
+    imgWrap.classList.add("relative", "cursor-pointer", "hover:opacity-40");
+    image.classList.add("z-10");
+    imgWrap.appendChild(
+      message({
+        secondary: true,
+        text: "Delete",
+        customClasses:
+          "absolute top-0 left-0 w-full h-full flex items-center justify-center z-0",
+      })
+    );
+    imgWrap.addEventListener("click", () => {
+      imgWrap.remove();
+    });
   }
 
   return imgWrap;

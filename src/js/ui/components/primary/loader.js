@@ -3,7 +3,8 @@ export function loader({ remove, add }) {
     const loaderEl = document.querySelector("#loader");
     loaderEl.remove();
     return;
-  } else if (add) {
+  }
+  if (add) {
     const loaderEl = document.createElement("div");
     loaderEl.id = "loader";
 
