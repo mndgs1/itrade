@@ -64,8 +64,7 @@ function loggedOutMenu(menuWrap, modalsContainer) {
 
   loginWrap.appendChild(
     button({
-      success: true,
-      rounded: true,
+      secondary: true,
       text: "Login",
       data: "loginOpen",
     })

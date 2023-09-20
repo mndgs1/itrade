@@ -8,8 +8,7 @@
     "scripts": {
         "dev": "cross-env TAILWIND_MODE=watch vite",
         "build": "cross-env TAILWIND_MODE=build vite build",
-        "serve": "vite preview",
-        "prepare": "husky install"
+        "serve": "vite preview"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.5",
