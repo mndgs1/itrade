@@ -7,7 +7,7 @@ import {
   modal,
 } from "../components/primary";
 import { form } from "../components";
-import { clear } from "../../tools";
+import { clear, getSearchParams } from "../../tools";
 import { getProfile } from "../../api/profiles";
 import { load } from "../../storage";
 import { formConfig } from "../components/constants/formConfig";
@@ -15,12 +15,9 @@ import { formConfig } from "../components/constants/formConfig";
 export async function profile() {
   clear("main");
 
-  const url = new URL(window.location.href);
+  const searchParams = getSearchParams();
 
-  const searchParams = url.searchParams;
-  const username = searchParams.get("name");
-
-  const profileData = await getProfile(username);
+  const profileData = await getProfile(searchParams.name);
 
   createProfileHTML(profileData);
 }

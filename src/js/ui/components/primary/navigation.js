@@ -12,8 +12,8 @@ export function navigation() {
       data: "createAuctionOpen",
     }),
     link({ text: "My Profile", path: `/profile?name=${profile.name}` }),
-    link({ text: "My Auctions", path: "/my-auctions" }),
-    link({ text: "My Bids", path: "/my-bids" }),
+    // link({ text: "My Auctions", path: "/my-auctions" }),
+    // link({ text: "My Bids", path: "/my-bids" }),
     link({ text: "Log Out", path: "/", id: "logout" }),
   ];
 

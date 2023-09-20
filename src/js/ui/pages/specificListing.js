@@ -16,6 +16,7 @@ import { formConfig } from "../components";
 
 export async function specificListing() {
   const listing = await getListing(getSearchParams().id);
+
   const main = document.querySelector("main");
   clear(main);
 
@@ -41,13 +42,12 @@ export async function specificListing() {
         primary: true,
         text: localDateTime(listing.updated),
       }),
-      form(formConfig.bid),
     ],
   });
 
   const detailsMediaWrap = createElement({
     el: "div",
-    classes: "lg:grid lg:grid-cols-3 lg:gap-4 mb-2",
+    classes: "md:grid md:grid-cols-3 md:gap-4 mb-2",
     children: [media, detailsWrap],
   });
 
@@ -62,14 +62,24 @@ export async function specificListing() {
   );
   if (listing.tags.length > 0) {
     listing.tags.forEach((listingTag) => {
-      listingContainer.appendChild(tag({ text: listingTag }));
+      if (listingTag) {
+        listingContainer.appendChild(tag({ text: listingTag }));
+      }
     });
   }
   listingContainer.appendChild(detailsMediaWrap);
 
-  if (isLoggedIn() && listing.bids.length > 0) {
-    listingContainer.appendChild(heading({ h2: true, text: "Bids" }));
-    addBidsTable(listing, listingContainer);
+  if (isLoggedIn()) {
+    detailsWrap.appendChild(heading({ h3: true, text: "Make a Bid" }));
+    const bidForm = form(formConfig.bid);
+    detailsWrap.appendChild(bidForm);
+    bidForm[0].value = 1;
+
+    if (listing.bids.length > 0) {
+      listingContainer.appendChild(heading({ h2: true, text: "Bids" }));
+      addBidsTable(listing, listingContainer);
+      bidForm[0].value = listing.bids[listing.bids.length - 1].amount + 1;
+    }
   }
   main.appendChild(listingContainer);
 }

@@ -28,7 +28,7 @@ export function image({
     attributes: {
       src: src ? src : "../../../../../assets/Placeholder image.webp",
       data: data,
-      alt: alt ? alt : "Placeholder image",
+      alt: alt ? alt : "Placeholder alt text",
     },
   });
 

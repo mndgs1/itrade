@@ -16,7 +16,7 @@ export function footer() {
 function headerContentWrap() {
   const wrap = container({});
   const wrapClasses = classNames(
-    "px-4 m-auto flex justify-center sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl"
+    "px-4 m-auto flex justify-center sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg"
   );
   wrap.className = wrapClasses;
   wrap.appendChild(logo());

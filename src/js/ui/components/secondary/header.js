@@ -15,7 +15,7 @@ export function header() {
   const modalsContainer = createElement({
     el: "div",
     classes:
-      "relative w-full px-4 m-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl",
+      "relative w-full px-4 m-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg",
     attributes: {
       id: "modalsContainer",
     },
@@ -24,7 +24,7 @@ export function header() {
   const headerContentWrap = createElement({
     el: "div",
     classes:
-      "px-4 m-auto relative flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl items-center gap-3",
+      "px-4 m-auto relative flex justify-between sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg items-center gap-3",
     children: [logo(), form(formConfig.search), headerMenu(modalsContainer)],
   });
 

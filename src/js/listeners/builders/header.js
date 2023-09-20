@@ -2,12 +2,6 @@ import { isLoggedIn } from "../../api/auth";
 import { listings } from "../../ui/pages";
 import { clear } from "../../tools";
 import * as listeners from "../index.js";
-import * as auth from "../auth";
-import {
-  addTagListener,
-  createListingListener,
-  addMediaListener,
-} from "../../listeners/ui/form";
 
 export function headerListeners() {
   if (!isLoggedIn()) {
@@ -25,12 +19,15 @@ export function headerListeners() {
   if (isLoggedIn()) {
     listeners.dialogListeners("menu");
     listeners.modalListeners("createAuction");
-    addTagListener();
-    addMediaListener();
-    auth.logout();
+    listeners.addTagListener();
+    listeners.addMediaListener();
+    listeners.logout();
 
     const createAuctionForm = document.querySelector("#createAuctionForm");
-    createAuctionForm.addEventListener("submit", createListingListener);
+    createAuctionForm.addEventListener(
+      "submit",
+      listeners.createListingListener
+    );
   }
 
   const searchForm = document.querySelector("#searchForm");

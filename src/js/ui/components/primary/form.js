@@ -58,6 +58,7 @@ export function form({
       });
     }
   }
+
   form.appendChild(container({ id: `${id}Errors`, customClasses: "" }));
 
   return form;

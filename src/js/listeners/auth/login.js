@@ -15,7 +15,7 @@ export async function loginListener(event) {
       save("token", data.accessToken);
       delete data.accessToken;
       save("profile", data);
-      location.href = `./?view=profile&name=${data.name}`;
+      window.location.reload();
     }
     if (error) {
       formErrorsMessages(event, error);

@@ -1,5 +1,9 @@
 import { listings, profile } from "../ui/pages";
-import { headerListeners, profileListeners } from "../listeners/builders/";
+import {
+  headerListeners,
+  profileListeners,
+  listingSpecificListeners,
+} from "../listeners/builders/";
 import { specificListing } from "../ui/pages/specificListing";
 import { footer, header, main } from "../ui/components/secondary";
 
@@ -20,7 +24,8 @@ export default async function router() {
       header();
       main();
       headerListeners();
-      specificListing();
+      await specificListing();
+      listingSpecificListeners();
       footer();
       break;
     case "/profile":

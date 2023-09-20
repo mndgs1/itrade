@@ -119,7 +119,7 @@ export const inputConfig = {
     }),
   },
   bid: {
-    id: "bid",
+    id: "amount",
     label: "Credits",
     short: true,
     attributes: {

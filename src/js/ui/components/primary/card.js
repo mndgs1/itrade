@@ -29,7 +29,9 @@ export function card({ data, listing, seller }) {
     let tagEls = [];
     if (data.tags.length > 0) {
       data.tags.forEach((item) => {
-        tagEls.push(tag({ text: item }));
+        if (item) {
+          tagEls.push(tag({ text: item }));
+        }
       });
     }
 
