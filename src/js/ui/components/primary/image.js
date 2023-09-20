@@ -26,7 +26,7 @@ export function image({
     el: "img",
     classes: "h-full w-full object-cover object-center",
     attributes: {
-      src: src ? src : "../../../../../assets/Placeholder image.webp",
+      src: src ? src : "../../../../assets/Placeholder image.webp",
       data: data,
       alt: alt ? alt : "Placeholder alt text",
     },

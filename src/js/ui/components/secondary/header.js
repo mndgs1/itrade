@@ -101,7 +101,7 @@ function loggedInMenu(menuWrap, modalsContainer) {
   const profileImage = image({
     src: profile.avatar
       ? profile.avatar
-      : "../../../assets/Portrait_Placeholder.png",
+      : "../../assets/Portrait_Placeholder.png",
     alt: `${profile.name} Avatar`,
     avatar: true,
   });

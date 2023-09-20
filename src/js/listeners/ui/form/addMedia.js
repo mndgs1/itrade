@@ -12,7 +12,7 @@ export function addMediaListener() {
       if (isValidImg) {
         src = mediaInput.value;
       } else {
-        src = "../../../../../assets/Placeholder image.webp";
+        src = "../../../../assets/Placeholder image.webp";
       }
 
       const imageEl = image({
