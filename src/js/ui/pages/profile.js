@@ -105,7 +105,7 @@ function createPageElementConfig(profileData) {
       image: image({
         src: profileData.avatar
           ? profileData.avatar
-          : "../../../assets/Portrait_Placeholder.png",
+          : "../../../../src/assets/Portrait_Placeholder.png",
         alt: `${profileData.name} Avatar`,
         profileImg: true,
       }),

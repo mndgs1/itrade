@@ -7,7 +7,7 @@ export function galery({ media }) {
   if (media.length === 0) {
     imagesArr.push(
       image({
-        src: `../../../../../assets/Placeholder image.webp`,
+        src: `../../../../../src/assets/Placeholder-image.jpg`,
         customClasses: `col-span-6 row-span-5 cursor-pointer`,
       })
     );
