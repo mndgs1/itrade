@@ -12,7 +12,8 @@ export function addMediaListener() {
       if (isValidImg) {
         src = mediaInput.value;
       } else {
-        src = "../assets/Placeholder_image.webp";
+        src =
+          "https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder-1024x512.png";
       }
 
       const imageEl = image({

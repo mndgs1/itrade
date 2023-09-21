@@ -1,17 +1,15 @@
-import classNames from "classnames";
-import { heading } from "../components";
-import { card } from "../components";
+import { heading, card, loader, container } from "../components";
 import { getListings } from "../../api/listings";
 import { latestBid } from "../../tools";
 
 export async function listings({ search }) {
-  const listings = await getListings({ tag: search });
-
-  console.log(listings);
   const main = document.querySelector("main");
   const headingEl = heading({ h1: true, text: "Listings" });
 
   main.appendChild(headingEl);
+
+  main.appendChild(loader({ add: true }));
+  const listings = await getListings({ tag: search });
 
   if (search) {
     main.appendChild(
@@ -19,16 +17,13 @@ export async function listings({ search }) {
     );
   }
 
-  const listingsWrap = document.createElement("div");
-  const listingsWrapClasses = classNames(
-    "listings grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5"
-  );
-
-  listingsWrap.className = listingsWrapClasses;
+  const listingsWrap = container({ listings: true });
 
   main.appendChild(listingsWrap);
 
   let offset = [0];
+
+  loader({ remove: true });
 
   addListings(listings, listingsWrap);
   document.addEventListener("scroll", function () {

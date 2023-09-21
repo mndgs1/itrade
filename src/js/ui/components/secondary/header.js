@@ -30,7 +30,7 @@ export function header() {
 
   const header = createElement({
     el: "header",
-    classes: "py-2 shadow relative",
+    classes: "py-2 shadow relative sticky top-0 bg-white z-50",
     children: [headerContentWrap, modalsContainer],
   });
 
@@ -99,7 +99,9 @@ function loggedInMenu(menuWrap, modalsContainer) {
   });
 
   const profileImage = image({
-    src: profile.avatar ? profile.avatar : "../assets/Portrait_Placeholder.png",
+    src: profile.avatar
+      ? profile.avatar
+      : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
     alt: `${profile.name} Avatar`,
     avatar: true,
   });

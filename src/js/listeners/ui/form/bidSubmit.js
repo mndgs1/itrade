@@ -1,5 +1,5 @@
 import { postBid } from "../../../api/listings";
-import { getSearchParams, formErrorsMessages } from "../../../tools";
+import { getSearchParams, handleApiCall } from "../../../tools";
 
 export async function bidSubmit(event) {
   event.preventDefault();
@@ -8,17 +8,11 @@ export async function bidSubmit(event) {
   const amount = parseInt(data.get("amount"));
 
   const searchParams = getSearchParams();
-  console.log(amount);
-  try {
-    const { data, error } = await postBid(searchParams.id, { amount });
-    if (data) {
-      console.log("Bid Created!  NEED TO ADD MESSAGE");
-    }
-
-    if (error) {
-      formErrorsMessages(event, error);
-    }
-  } catch {
-    return alert("Oops! There was a problem creating your a account");
-  }
+  handleApiCall({
+    apiData: { listingId: searchParams.id, bodyData: { amount } },
+    apiFunction: postBid,
+    successMessage: `Your bid of ${amount} kr was registererd!`,
+    onErrorMessage: "Oops! There was a problem registering your Bid!",
+    event,
+  });
 }

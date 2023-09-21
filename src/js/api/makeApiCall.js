@@ -13,7 +13,7 @@ export async function makeApiCall(endpoint, options = {}) {
       error = json;
     }
   } catch (err) {
-    console.log(err);
+    alert("There was an error connect to the API!");
   }
 
   return { data, error };

@@ -6,6 +6,7 @@ export function container({
   specificListingMedia,
   bids,
   listing,
+  listings,
   tags,
   seller,
   profile,
@@ -21,11 +22,13 @@ export function container({
     "specificListingMedia-classes": specificListingMedia,
     "bids-classes": bids,
     "2xl": listing,
+    "grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5":
+      listings,
     "string of classes": tags,
     "string of classes2": seller,
-    "md:flex md:gap-3": profile,
+    "md:flex md:gap-3 mb-3": profile,
     "border-b border-gray-900/10 pb-12 space-y-4 mt-10": formInputContainer,
-    "mt-6 flex items-center justify-end gap-x-6": formButtonsContainer,
+    "mt-6 flex items-center justify-end gap-x-6 mb-2": formButtonsContainer,
   });
 
   const containerEl = document.createElement("div");
@@ -38,5 +41,6 @@ export function container({
   if (data) {
     containerEl.setAttribute("data", data);
   }
+
   return containerEl;
 }

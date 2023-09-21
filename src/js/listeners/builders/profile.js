@@ -1,5 +1,8 @@
 import { setAvatar } from "../../api/profiles";
 import { formErrorsMessages } from "../../tools/formErrorsMessages";
+import { clear, getSearchParams } from "../../tools";
+import { loader, message } from "../../ui/components";
+import * as storage from "../../storage";
 
 export async function profileListeners() {
   const avatarButton = document.querySelector("[data='avatarOpen']");
@@ -12,21 +15,37 @@ export async function profileListeners() {
     const avatarInput = document.querySelector("#avatar");
     const avatarForm = document.querySelector("#avatarForm");
 
-    avatarForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    avatarForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-      const url = new URL(window.location.href);
+      const errorContainer = document.querySelector(
+        `#${event.target.id}Errors`
+      );
 
-      const searchParams = url.searchParams;
-      const username = searchParams.get("name");
+      const username = getSearchParams().name;
 
-      const { data, error } = await setAvatar(username, avatarInput.value);
+      try {
+        clear(errorContainer);
+        errorContainer.appendChild(loader({ add: true }));
+        const { data, error } = await setAvatar(username, avatarInput.value);
 
-      if (data) {
-        console.log("ADD SUCESS MESSAGE");
-      }
-      if (error) {
-        formErrorsMessages(e, error);
+        if (data) {
+          clear(errorContainer);
+          errorContainer.appendChild(
+            message({
+              success: true,
+              text: "Your avatar was changed succesfully!",
+            })
+          );
+          const profileStored = JSON.parse(storage.load("profile"));
+          profileStored.avatar = avatarInput.value;
+          storage.save("profile", profileStored);
+        }
+        if (error) {
+          formErrorsMessages(event, error);
+        }
+      } catch (error) {
+        return alert("There was a problem trying connect to the server!");
       }
     });
 
