@@ -7,7 +7,7 @@ export function galery({ media }) {
   if (media.length === 0) {
     imagesArr.push(
       image({
-        src: `../../../../../assets/Placeholder image.webp`,
+        src: `https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder-1024x512.png`,
         customClasses: `col-span-6 row-span-5 cursor-pointer`,
       })
     );

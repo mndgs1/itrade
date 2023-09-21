@@ -20,7 +20,6 @@ export function formErrorsMessages(event, error = {}) {
     }
   });
 
-  console.log(errorPaths);
   highlightErrorInputs(errorPaths, event.target);
 }
 

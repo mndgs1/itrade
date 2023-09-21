@@ -16,7 +16,7 @@ export function message({
   const classes = classNames(customClasses, "", {
     "text-zinq-900": primary,
     "text-gray-500": secondary,
-    "text-xl ": success,
+    "bg-green-200 p-2": success,
     "string of classes2": danger,
     "text-sm text-red-500": warning,
     "": tag,

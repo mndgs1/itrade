@@ -8,7 +8,7 @@ export async function getListings({
   tag = "",
   active = true,
 } = {}) {
-  const endpoint = `/auction/listings?limit=${limit}&offset=${offset}&_seller=${seller}&_bids=${bids}&_tag=${tag}&active=${active}`;
+  const endpoint = `/auction/listings?limit=${limit}&offset=${offset}&_seller=${seller}&_bids=${bids}&_tag=${tag}&_active=${active}`;
 
   const { data, error } = await makeApiCall(endpoint);
 

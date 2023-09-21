@@ -5,3 +5,4 @@ export * from "./localDateTime";
 export * from "./formErrorsMessages";
 export * from "./addClasses";
 export * from "./createElement";
+export * from "./handleApiCall";

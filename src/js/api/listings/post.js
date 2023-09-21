@@ -13,7 +13,7 @@ export async function postListing(bodyData = {}) {
   return { data, error };
 }
 
-export async function postBid(listingId, bodyData = {}) {
+export async function postBid({ listingId, bodyData = {} }) {
   const endpoint = `/auction/listings/${listingId}/bids`;
 
   const options = createOptions({

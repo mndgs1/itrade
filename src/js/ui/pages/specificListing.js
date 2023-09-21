@@ -20,6 +20,8 @@ export async function specificListing() {
   const main = document.querySelector("main");
   clear(main);
 
+  const listingContainer = container({ specificListing: true });
+
   const media = galery({ media: listing.media });
   const detailsWrap = createElement({
     el: "div",
@@ -50,8 +52,6 @@ export async function specificListing() {
     classes: "md:grid md:grid-cols-3 md:gap-4 mb-2",
     children: [media, detailsWrap],
   });
-
-  const listingContainer = container({ specificListing: true });
 
   listingContainer.appendChild(
     heading({
