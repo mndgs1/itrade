@@ -6,6 +6,7 @@ import {
   image,
   form,
   navigation,
+  icon,
 } from "../primary";
 import { isLoggedIn } from "../../../api/auth";
 import { formConfig } from "../constants/";
@@ -20,6 +21,18 @@ export function header() {
       id: "modalsContainer",
     },
   });
+
+  modalsContainer.appendChild(
+    modal({
+      modal: true,
+      data: "imageModal",
+      el: icon({
+        className: "fa-solid fa-x fa-2xl",
+        data: "imageModalClose",
+        srText: "Close Image Modal",
+      }),
+    })
+  );
 
   const headerContentWrap = createElement({
     el: "div",

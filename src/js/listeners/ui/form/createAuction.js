@@ -45,7 +45,11 @@ function createMediaArr() {
   const mediaEls = document.querySelectorAll("[data='medias']");
   let media = [];
   mediaEls.forEach((mediaEl) => {
-    if (!media.includes(mediaEl.src)) {
+    if (
+      !media.includes(mediaEl.src) &&
+      mediaEl.src !==
+        "https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder-1024x512.png"
+    ) {
       media.push(mediaEl.src);
     }
   });

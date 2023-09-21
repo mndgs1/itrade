@@ -9,7 +9,11 @@ export function modal({ element, data, modal, dialog, customClasses }) {
 
   modalEl.className = modalClasses;
 
-  modalEl.setAttribute("data", data);
-  modalEl.appendChild(element);
+  if (data) {
+    modalEl.setAttribute("data", data);
+  }
+  if (element) {
+    modalEl.appendChild(element);
+  }
   return modalEl;
 }

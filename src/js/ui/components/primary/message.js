@@ -5,21 +5,18 @@ export function message({
   secondary,
   success,
   warning,
-  danger,
   text,
-  tag,
   input,
   customClasses,
   price,
   large,
+  id,
 }) {
   const classes = classNames(customClasses, "", {
     "text-zinq-900": primary,
     "text-gray-500": secondary,
-    "bg-green-200 p-2": success,
-    "string of classes2": danger,
-    "text-sm text-red-500": warning,
-    "": tag,
+    "bg-green-200 p-2 rounded": success,
+    "text-sm text-red-600": warning,
     "text-xs text-gray-600": input,
     "text-xl md:text-xxl": large,
   });
@@ -30,6 +27,10 @@ export function message({
 
   if (price) {
     messageEl.innerText += ` kr`;
+  }
+
+  if (id) {
+    messageEl.id = id;
   }
 
   return messageEl;
