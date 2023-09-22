@@ -1,8 +1,11 @@
 import classNames from "classnames";
 
-export function link({ text, path, id, data, standard }) {
+export function link({ text, path, id, data, standard, nav, customClasses }) {
   const link = document.createElement("a");
-  const linkClasses = classNames("");
+  const linkClasses = classNames(customClasses, "inline-block", {
+    "italic underline underline-offset-2": standard,
+    "py-0.5": nav,
+  });
   link.className = linkClasses;
 
   if (id) {
@@ -18,8 +21,5 @@ export function link({ text, path, id, data, standard }) {
   }
   link.href = path;
 
-  if (standard) {
-    link.className += "underline italic underline-offset-2";
-  }
   return link;
 }

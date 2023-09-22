@@ -3,7 +3,7 @@ import { logo, message, container } from "../primary";
 
 export function footer() {
   const header = document.createElement("footer");
-  const headerClasses = classNames("py-2 shadow relative");
+  const headerClasses = classNames("py-2 shadow relative mt-12");
   header.className = headerClasses;
 
   const body = document.querySelector("body");
@@ -16,7 +16,7 @@ export function footer() {
 function headerContentWrap() {
   const wrap = container({});
   const wrapClasses = classNames(
-    "px-4 m-auto flex justify-center sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg"
+    "px-4 m-auto flex justify-center gap-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg"
   );
   wrap.className = wrapClasses;
   wrap.appendChild(logo());

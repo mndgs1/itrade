@@ -117,7 +117,6 @@ function createProfileHTML(profileData, main) {
 // Creates listings table
 function addListingsTable(listings, listingContainer) {
   const modifiedListings = listings.map((listing) => {
-    const createdLocal = localDateTime(listing.created);
     const endsLocal = localDateTime(listing.created);
 
     return {
@@ -127,14 +126,13 @@ function addListingsTable(listings, listingContainer) {
         standard: true,
       }),
       Description: listing.description,
-      Created: createdLocal,
       Ends: endsLocal,
     };
   });
 
   listingContainer.appendChild(
     table({
-      headers: ["Title", "Description", "Created", "Ends"],
+      headers: ["Title", "Description", "Ends"],
       data: modifiedListings,
     })
   );

@@ -16,6 +16,7 @@ export function button({
   clear,
   customClasses,
   wrap,
+  large,
 }) {
   const classes = classNames(
     customClasses,
@@ -34,6 +35,7 @@ export function button({
       "text-yellow-400": outline && warning,
       "text-red-500": outline && danger,
       "border-transparent bg-transparent hover:bg-gray-50 mr-1": clear,
+      "text-xl px-6 py-4": large,
     }
   );
 

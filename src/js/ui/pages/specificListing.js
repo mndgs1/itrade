@@ -31,18 +31,28 @@ export async function specificListing() {
         text: "Details",
       }),
       heading({ h3: true, text: "Description" }),
-      message({ primary: true, text: listing.description }),
+      message({
+        primary: true,
+        text: listing.description,
+        customClasses: "mb-2",
+      }),
       heading({ h3: true, text: "Auction Ends" }),
-      message({ primary: true, text: localDateTime(listing.endsAt) }),
+      message({
+        primary: true,
+        text: localDateTime(listing.endsAt),
+        customClasses: "mb-2",
+      }),
       heading({ h3: true, text: "Auction created" }),
       message({
         primary: true,
         text: localDateTime(listing.created),
+        customClasses: "mb-2",
       }),
       heading({ h3: true, text: "Last updated" }),
       message({
         primary: true,
         text: localDateTime(listing.updated),
+        customClasses: "mb-2",
       }),
     ],
   });
@@ -70,7 +80,6 @@ export async function specificListing() {
   listingContainer.appendChild(detailsMediaWrap);
 
   if (isLoggedIn()) {
-    detailsWrap.appendChild(heading({ h3: true, text: "Make a Bid" }));
     const bidForm = form(formConfig.bid);
     detailsWrap.appendChild(bidForm);
     bidForm[0].value = 1;

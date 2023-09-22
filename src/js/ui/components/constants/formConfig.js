@@ -108,9 +108,10 @@ export const formConfig = {
       {
         id: "bidSubmit",
         primary: true,
+        large: true,
         text: "Bid",
-        customClasses: "inline-flex",
       },
     ],
+    customClasses: "flex flex-wrap gap-2",
   },
 };
