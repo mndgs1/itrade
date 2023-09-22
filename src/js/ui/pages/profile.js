@@ -15,6 +15,7 @@ import {
   getSearchParams,
   localDateTime,
   createElement,
+  changePageMeta,
 } from "../../tools";
 import { getProfile } from "../../api/profiles";
 import { load } from "../../storage";
@@ -29,6 +30,11 @@ export async function profile() {
   const searchParams = getSearchParams();
 
   const profileData = await getProfile(searchParams.name);
+
+  changePageMeta({
+    title: `${profileData.name} profile`,
+    description: `Profile information of a user ${profileData.name}`,
+  });
 
   loader({ remove: true });
   createProfileHTML(profileData, main);

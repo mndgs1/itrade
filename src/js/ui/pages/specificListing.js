@@ -9,13 +9,23 @@ import {
   form,
 } from "../components/primary";
 import { getListing } from "../../api/listings";
-import { clear, getSearchParams, createElement } from "../../tools";
+import {
+  clear,
+  getSearchParams,
+  createElement,
+  changePageMeta,
+} from "../../tools";
 import { isLoggedIn } from "../../api/auth";
 import { localDateTime } from "../../tools";
 import { formConfig } from "../components";
 
 export async function specificListing() {
   const listing = await getListing(getSearchParams().id);
+
+  changePageMeta({
+    title: `${listing.title} listing`,
+    description: `Detailed information about ${listing.title} Listing`,
+  });
 
   const main = document.querySelector("main");
   clear(main);

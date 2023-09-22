@@ -1,6 +1,6 @@
 import { heading, card, loader, container } from "../components";
 import { getListings } from "../../api/listings";
-import { latestBid } from "../../tools";
+import { latestBid, changePageMeta } from "../../tools";
 
 export async function listings({ search }) {
   const main = document.querySelector("main");
@@ -11,6 +11,10 @@ export async function listings({ search }) {
   main.appendChild(loader({ add: true }));
   const listings = await getListings({ tag: search });
 
+  changePageMeta({
+    title: "Listings",
+    description: "A list of listings on iTrade",
+  });
   if (search) {
     main.appendChild(
       heading({ h2: true, text: `Search results for: ${search}` })

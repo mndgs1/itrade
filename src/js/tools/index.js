@@ -7,3 +7,4 @@ export * from "./addClasses";
 export * from "./createElement";
 export * from "./handleApiCall";
 export * from "./isValidImageUrl";
+export * from "./changePageMeta";
