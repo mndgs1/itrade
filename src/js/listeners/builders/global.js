@@ -2,7 +2,6 @@ export function globalListeners() {
   const expandableImages = document.querySelectorAll("[data='imageOpen']");
 
   if (expandableImages.length > 0) {
-    // listeners.modalListeners("image");
     const imageInModal = document.querySelector("[data='imageModal'] img");
     const imageModal = document.querySelector("[data='imageModal']");
     const imageClose = document.querySelector("[data='imageClose']");
