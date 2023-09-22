@@ -3,6 +3,7 @@ import {
   headerListeners,
   profileListeners,
   listingSpecificListeners,
+  globalListeners,
 } from "../listeners/builders/";
 import { specificListing } from "../ui/pages/specificListing";
 import { footer, header, main } from "../ui/components/secondary";
@@ -36,4 +37,6 @@ export default async function router() {
       profileListeners();
       footer();
   }
+
+  globalListeners();
 }

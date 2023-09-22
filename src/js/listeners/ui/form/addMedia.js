@@ -1,4 +1,5 @@
-import { image } from "../../../ui/components/primary/";
+import { image, message } from "../../../ui/components/primary/";
+import { isValidImageUrl } from "../../../tools";
 
 export function addMediaListener() {
   const addTagBtn = document.querySelector("#addMedia");
@@ -6,38 +7,38 @@ export function addMediaListener() {
     const mediaInput = document.querySelector("#media");
     const mediaWrap = document.querySelector("#mediaWrap");
 
+    mediaInput.addEventListener("focus", (e) => {
+      if (document.querySelector("#mediaError")) {
+        document.querySelector("#mediaError").remove();
+        e.target.classList.remove("border-2", "border-red-300");
+      }
+    });
+
     if (mediaInput.value) {
       const isValidImg = isValidImageUrl(mediaInput.value);
       let src;
+
       if (isValidImg) {
         src = mediaInput.value;
+        const imageEl = image({
+          formImage: true,
+          src: src,
+          data: "medias",
+        });
+        mediaWrap.appendChild(imageEl);
       } else {
-        src =
-          "https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder-1024x512.png";
+        const errorMessage = message({
+          warning: true,
+          text: "Image url not valid",
+          id: "mediaError",
+        });
+
+        mediaInput.classList.add("border-2", "border-red-300");
+        mediaWrap.appendChild(errorMessage);
+        return;
       }
 
-      const imageEl = image({
-        formImage: true,
-        src: src,
-        data: "medias",
-        onClickDelete: true,
-      });
-      mediaWrap.appendChild(imageEl);
       mediaInput.value = "";
     }
   });
-}
-
-function isValidImageUrl(url) {
-  // Define a list of valid image file extensions
-  const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp", "webp"];
-
-  // Extract the file extension from the URL
-  const urlExtension = url.split(".").pop().toLowerCase();
-
-  if (imageExtensions.includes(urlExtension)) {
-    return true;
-  } else {
-    return false;
-  }
 }

@@ -16,10 +16,11 @@ export function button({
   clear,
   customClasses,
   wrap,
+  large,
 }) {
   const classes = classNames(
     customClasses,
-    "flex items-center px-4 py-3 border h-8 rounded hover:drop-shadow",
+    "flex items-center px-4 py-3 border h-8 rounded",
     {
       "opacity-80": loading,
       "border-customOrange bg-customOrange text-customGrey": primary,
@@ -34,6 +35,7 @@ export function button({
       "text-yellow-400": outline && warning,
       "text-red-500": outline && danger,
       "border-transparent bg-transparent hover:bg-gray-50 mr-1": clear,
+      "text-xl px-6 py-4": large,
     }
   );
 
