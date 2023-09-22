@@ -8,7 +8,7 @@ export function galery({ media }) {
     imagesArr.push(
       image({
         src: `https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder-1024x512.png`,
-        customClasses: `col-span-6 row-span-5 cursor-pointer`,
+        customClasses: `col-span-6 row-span-5`,
       })
     );
   }
@@ -18,17 +18,19 @@ export function galery({ media }) {
       imagesArr.push(
         image({
           src: media[i],
-          customClasses: `col-span-6 row-span-5 cursor-pointer`,
+          customClasses: `col-span-6 row-span-5 `,
+          expandable: true,
+        })
+      );
+    } else {
+      imagesArr.push(
+        image({
+          src: media[i],
+          customClasses: "cursor-pointer",
+          expandable: true,
         })
       );
     }
-
-    imagesArr.push(
-      image({
-        src: media[i],
-        customClasses: "cursor-pointer",
-      })
-    );
   }
 
   const galery = createElement({

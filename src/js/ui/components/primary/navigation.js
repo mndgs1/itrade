@@ -15,7 +15,7 @@ export function navigation() {
       data: "createAuctionOpen",
     }),
     link({
-      text: "Home",
+      text: "Listings",
       path: "/",
       nav: true,
       customClasses:

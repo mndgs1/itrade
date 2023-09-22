@@ -22,18 +22,24 @@ export function header() {
     },
   });
 
-  modalsContainer.appendChild(
-    modal({
-      modal: true,
-      data: "imageModal",
-      el: icon({
+  const imageModalWrap = createElement({
+    el: "div",
+    children: [
+      icon({
         className: "fa-solid fa-x fa-2xl",
-        data: "imageModalClose",
+        data: "imageClose",
         srText: "Close Image Modal",
       }),
-    })
-  );
+      image({ customClasses: "max-w-screen-lg" }),
+    ],
+  });
+  const imageModal = modal({
+    modal: true,
+    data: "imageModal",
+    element: imageModalWrap,
+  });
 
+  modalsContainer.appendChild(imageModal);
   const headerContentWrap = createElement({
     el: "div",
     classes:

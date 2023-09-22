@@ -43,6 +43,7 @@ function createProfileHTML(profileData, main) {
       : "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
     alt: `${profileData.name} Avatar`,
     profileImg: true,
+    expandable: true,
   });
 
   const avatarContainer = createElement({

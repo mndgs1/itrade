@@ -24,7 +24,6 @@ export function addMediaListener() {
           formImage: true,
           src: src,
           data: "medias",
-          onClickDelete: true,
         });
         mediaWrap.appendChild(imageEl);
       } else {
