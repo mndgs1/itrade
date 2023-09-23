@@ -105,26 +105,24 @@ function addBidsTable(listing, listingContainer) {
   const modifiedBids = listing.bids.map((item) => {
     const dateLocal = localDateTime(item.created);
 
+    const bidsConfig = {
+      Date: dateLocal,
+      Amount: `${item.amount} kr`,
+    };
     if (isLoggedIn()) {
-      return {
-        Bidder: link({
-          text: item.bidderName,
-          path: `/profile?name=${item.bidderName}`,
-          standard: true,
-        }),
-        Date: dateLocal,
-        Amount: `${item.amount} kr`,
-      };
+      bidsConfig.Bidder = link({
+        text: item.bidderName,
+        path: `/profile?name=${item.bidderName}`,
+        standard: true,
+      });
     } else {
-      return {
-        Bidder: message({
-          text: item.bidderName,
-          primary: true,
-        }),
-        Date: dateLocal,
-        Amount: `${item.amount} kr`,
-      };
+      bidsConfig.Bidder = message({
+        text: item.bidderName,
+        primary: true,
+      });
     }
+
+    return bidsConfig;
   });
 
   listingContainer.appendChild(

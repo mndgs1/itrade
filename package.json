@@ -15,6 +15,7 @@
         "autoprefixer": "^10.4.16",
         "cross-env": "^7.0.3",
         "eslint": "^8.47.0",
+        "netlify-cli": "^16.4.2",
         "postcss": "^8.4.30",
         "prettier": "^2.5.1",
         "prettier-plugin-tailwindcss": "^0.1.5",
