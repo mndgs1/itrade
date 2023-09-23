@@ -13,6 +13,10 @@ export function formErrorsMessages(event, error = {}) {
       text: `${error.message}`,
     });
 
+    if (error.code === "FAST_JWT_MALFORMED") {
+      errorMessage.innerText = `Only registered user can make this action`;
+    }
+
     errorContainer.appendChild(errorMessage);
 
     if ("path" in error) {

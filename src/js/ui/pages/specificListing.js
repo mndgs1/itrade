@@ -15,9 +15,9 @@ import {
   createElement,
   changePageMeta,
 } from "../../tools";
-import { isLoggedIn } from "../../api/auth";
 import { localDateTime } from "../../tools";
 import { formConfig } from "../components";
+import { isLoggedIn } from "../../api/auth";
 
 export async function specificListing() {
   const listing = await getListing(getSearchParams().id);
@@ -89,16 +89,14 @@ export async function specificListing() {
   }
   listingContainer.appendChild(detailsMediaWrap);
 
-  if (isLoggedIn()) {
-    const bidForm = form(formConfig.bid);
-    detailsWrap.appendChild(bidForm);
-    bidForm[0].value = 1;
+  const bidForm = form(formConfig.bid);
+  detailsWrap.appendChild(bidForm);
+  bidForm[0].value = 1;
 
-    if (listing.bids.length > 0) {
-      listingContainer.appendChild(heading({ h2: true, text: "Bids" }));
-      addBidsTable(listing, listingContainer);
-      bidForm[0].value = listing.bids[listing.bids.length - 1].amount + 1;
-    }
+  if (listing.bids.length > 0) {
+    listingContainer.appendChild(heading({ h2: true, text: "Bids" }));
+    addBidsTable(listing, listingContainer);
+    bidForm[0].value = listing.bids[listing.bids.length - 1].amount + 1;
   }
   main.appendChild(listingContainer);
 }
@@ -107,15 +105,26 @@ function addBidsTable(listing, listingContainer) {
   const modifiedBids = listing.bids.map((item) => {
     const dateLocal = localDateTime(item.created);
 
-    return {
-      Bidder: link({
-        text: item.bidderName,
-        path: `/profile?name=${item.bidderName}`,
-        standard: true,
-      }),
-      Date: dateLocal,
-      Amount: `${item.amount} kr`,
-    };
+    if (isLoggedIn()) {
+      return {
+        Bidder: link({
+          text: item.bidderName,
+          path: `/profile?name=${item.bidderName}`,
+          standard: true,
+        }),
+        Date: dateLocal,
+        Amount: `${item.amount} kr`,
+      };
+    } else {
+      return {
+        Bidder: message({
+          text: item.bidderName,
+          primary: true,
+        }),
+        Date: dateLocal,
+        Amount: `${item.amount} kr`,
+      };
+    }
   });
 
   listingContainer.appendChild(
