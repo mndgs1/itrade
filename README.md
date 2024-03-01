@@ -6,7 +6,7 @@ A fictional auction website using NOROFF Api.
 
 ## Description
 
-The code is written in plain javascript trying to emulate a framework. HTML is built with Javascript. Page builder scripts, components.
+The code is written in plain javascript trying to emulate a framework. HTML, page builder scripts, components is all built with plain Javascript.
 
 ## Built With
 
