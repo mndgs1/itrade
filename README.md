@@ -42,9 +42,7 @@ Open at [localhost/:3000](http://localhost:3000/)
 
 ## Contact
 
-[My Twitter page](www.twitter.com)
-
-[My LinkedIn page](www.linkedin.com)
+[My LinkedIn page](https://www.linkedin.com/in/mindaugas-bankauskas/)
 
 ## License
 
