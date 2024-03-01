@@ -1,8 +1,10 @@
 # iTrade
 
+A fictional auction website using NOROFF Api.
+[Live Demo](https://app.netlify.com/sites/mndgsitrade/overview)
+
 ![image](./assets//webpageimg.png)
 
-A fictional auction website using NOROFF Api.
 
 ## Description
 
